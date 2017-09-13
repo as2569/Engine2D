@@ -1,2 +1,7 @@
-﻿  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\\Engine.exe
-  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\\Engine.pdb (Partial PDB)
+﻿  entity.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(10): warning C4013: 'memset' undefined; assuming extern returning int
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(41): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(42): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(31): warning C4715: 'entity_new': not all control paths return a value
+  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
+  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

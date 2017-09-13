@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\include;C:\Libraries\SDL2_mixer-2.0.1\include;C:\Libraries\SDL2_image-2.0.1\include;C:\Libraries\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\include;C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\include;C:\Libraries\SDL2_mixer-2.0.1\include;C:\Libraries\SDL2_image-2.0.1\include;C:\Libraries\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Libraries\SDL2-2.0.5\lib\x86;C:\Libraries\SDL2_mixer-2.0.1\lib\x86;C:\Libraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\</OutDir>
   </PropertyGroup>
@@ -81,7 +81,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\include;C:\Libraries\SDL2_mixer-2.0.1\include;C:\Libraries\SDL2_image-2.0.1\include;C:\Libraries\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\include;C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\include;C:\Libraries\SDL2_mixer-2.0.1\include;C:\Libraries\SDL2_image-2.0.1\include;C:\Libraries\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Libraries\SDL2-2.0.5\lib\x86;C:\Libraries\SDL2_mixer-2.0.1\lib\x86;C:\Libraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\</OutDir>
   </PropertyGroup>
@@ -155,15 +155,7 @@
     <Image Include="..\images\space_bug_top.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\gf2d_draw.h" />
-    <ClInclude Include="..\include\gf2d_graphics.h" />
-    <ClInclude Include="..\include\gf2d_sprite.h" />
-    <ClInclude Include="..\include\gf2d_text.h" />
-    <ClInclude Include="..\include\gf2d_types.h" />
-    <ClInclude Include="..\include\gf2d_vector.h" />
-    <ClInclude Include="..\include\simple_logger.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="src\entity.c" />
     <ClCompile Include="src\game.c" />
     <ClCompile Include="src\gf2d_draw.c" />
     <ClCompile Include="src\gf2d_graphics.c" />
@@ -173,6 +165,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\entity.h" />
+    <ClInclude Include="include\gf2d_draw.h" />
+    <ClInclude Include="include\gf2d_graphics.h" />
+    <ClInclude Include="include\gf2d_sprite.h" />
+    <ClInclude Include="include\gf2d_text.h" />
+    <ClInclude Include="include\gf2d_types.h" />
+    <ClInclude Include="include\gf2d_vector.h" />
+    <ClInclude Include="include\simple_logger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
