@@ -56,6 +56,9 @@
     <ClCompile Include="src\entity.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile">
@@ -85,6 +88,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

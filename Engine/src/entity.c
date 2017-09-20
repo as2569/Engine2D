@@ -1,50 +1,95 @@
+#include <SDL.h>
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
-#include "SDL.h"
+#include "gf2d_sprite.h"
+#include "simple_logger.h"
 #include "entity.h"
 
 Entity entList[MAX_ENTITIES];
 
 void clearEntList()
 {
-	memset(entList, 0, 50 * sizeof(Entity));
+	memset(entList, 0, MAX_ENTITIES * sizeof(Entity));
 }
 
 Entity* entity_new()
 {
-	SDL_Rect r = { 600, 360, 64, 64 };
-	Vector4D col = { 255, 0, 0, 200 };
+	Entity *e = NULL;
+	Sprite* new_sprite = gf2d_sprite_load_all("images/testSprites.png", 32, 32, 1);
 
-	for (int i = 0; i <= MAX_ENTITIES; i++)
+	for (int i = 0; i < MAX_ENTITIES; i++)
 	{
 		if (!entList[i].inUse)
 		{
-			Entity *ent = &entList[i];
+			Entity *e = &entList[i];
 			entList[i].inUse = 1;
 			entList[i].position.x = 0;
 			entList[i].position.y = 0;
-			entList[i].rect = r;
-			entList[i].color = col;
-			return ent;
+			entList[i].scale.x = 2;
+			entList[i].scale.y = 2;
+			entList[i].sprite = new_sprite;
+			e->acceleration.x = gf2d_crandom();
+			e->acceleration.y = gf2d_crandom();
+			return e;
+		}
+	}
+	return NULL;
+}
+
+void update_entities()
+{
+	for (int i = 0; i < MAX_ENTITIES; i++)
+	{
+		if (entList[i].inUse)
+		{
+			entList[i].update = entity_update;
+			Entity *e = &entList[i];
+			(*e->update)(e);
 		}
 	}
 }
 
-void entity_free(Entity** e)
+//why is this double pointer?
+//void entity_free(Entity** e)
+//{
+//	(*e)->inUse = 0;
+//	*e = 0;
+//}
+
+void entity_free(Entity* e)
 {
-	(*e)->inUse = 0;
-	*e = 0;
+	e->inUse = 0;
+	e->sprite = NULL;
+	e = 0;
 }
 
 void entity_update(Entity* e)
 {
-	e->rect.y -= 0.01f;
-	gf2d_draw_rect(e->rect, e->color);
+	//if entity is out of screen bounds, free it
+	if (e->position.x > 1250 || e->position.x < -1250 || e->position.y > 750 || e->position.y < -750)
+	{
+		entity_free(e);
+		slog("entity out of bounds, deleted");
+		return;
+	}
+	//e->acceleration.x = gf2d_crandom();
+	//e->acceleration.y = gf2d_crandom();
+	vector2d_add(e->position, e->position, e->acceleration);
+	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
+
+	if (e->position.y < 100)
+	{
+		entity_free(e);
+	}
+
 }
 
 void entity_set_position(Entity* e, int x, int y)
 {
-	e->position.x = x;
-	e->position.y = y;
+	if (e)
+	{
+		e->position.x = x;
+		e->position.y = y;
+	}
 }
 

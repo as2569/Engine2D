@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <stdio.h>
+#include <time.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
@@ -10,18 +11,19 @@
 
 int main(int argc, char * argv[])
 {
+	//my variables
+	Entity* e;
+
     /*variable declarations*/
     int done = 0;
     const Uint8 * keys;
     Sprite *sprite;
 	
+	//mouse variables
     int mx,my;
     float mf = 0;
     Sprite *mouse;
     Vector4D mouseColor = {255,100,255,200};
-	
-	Entity* e;
-	int length; //Length of EntList
 
     /*program initialization*/
     init_logger("gf2d.log");
@@ -43,8 +45,6 @@ int main(int argc, char * argv[])
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 
 	clearEntList();
-	e = entity_new();
-	entity_set_position(e, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 
     /*main game loop*/
     while(!done)
@@ -55,32 +55,38 @@ int main(int argc, char * argv[])
         SDL_GetMouseState(&mx,&my);
         mf+=0.1f;
         if (mf >= 16.0)mf = 0;
-		length = sizeof(entList) / sizeof(Entity);
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
 		
-            //backgrounds drawn first
-            gf2d_sprite_draw_image(sprite,vector2d(0,0));
+		//create entity on space
+		if(keys[SDL_SCANCODE_SPACE])
+		{
+			e = entity_new();
+			entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+		}
 
-			e->update = entity_update;
-			(*e->update)(e);
+        //backgrounds drawn first
+        gf2d_sprite_draw_image(sprite,vector2d(0,0));
 
-            //UI elements last
-            gf2d_sprite_draw(
-                mouse,
-                vector2d(mx,my),
-                NULL,
-                NULL,
-                NULL,
-                NULL,
-                &mouseColor,
-                (int)mf);
+		update_entities();
+
+        //UI elements last
+        gf2d_sprite_draw(
+            mouse,
+            vector2d(mx,my),
+            NULL,
+            NULL,
+            NULL,
+            NULL,
+            &mouseColor,
+            (int)mf);
 
         gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         
         if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
         //printf("\n Rendering at %f FPS",gf2d_graphics_get_frames_per_second()); // print FPS to console
+		
     }
     slog("---==== END ====---");
     return 0;
