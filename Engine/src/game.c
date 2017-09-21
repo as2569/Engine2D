@@ -17,6 +17,7 @@ int main(int argc, char * argv[])
     /*variable declarations*/
     int done = 0;
     const Uint8 * keys;
+	SDL_Event this_event;
     Sprite *sprite;
 	
 	//mouse variables
@@ -51,6 +52,20 @@ int main(int argc, char * argv[])
     {
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
+
+		/* Check for events */
+		//while (SDL_PollEvent(&this_event))
+		//{  /* Loop until there are no events left on the queue */
+		//	switch(this_event.type)
+		//	{  
+
+		//		case SDL_KEYDOWN:  // Handle a KEYDOWN event 
+		//		slog("Oh! Key press\n");
+		//		e = entity_new();
+		//		entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+		//	}
+		//}
+
         /*update things here*/
         SDL_GetMouseState(&mx,&my);
         mf+=0.1f;
@@ -72,15 +87,15 @@ int main(int argc, char * argv[])
 		update_entities();
 
         //UI elements last
-        gf2d_sprite_draw(
-            mouse,
-            vector2d(mx,my),
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            &mouseColor,
-            (int)mf);
+		gf2d_sprite_draw(
+			mouse,
+			vector2d(mx, my),
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			&mouseColor,
+			(int)mf);
 
         gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         

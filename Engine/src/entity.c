@@ -28,8 +28,8 @@ Entity* entity_new()
 			entList[i].scale.x = 2;
 			entList[i].scale.y = 2;
 			entList[i].sprite = new_sprite;
-			e->acceleration.x = gf2d_crandom();
-			e->acceleration.y = gf2d_crandom();
+			e->velocity.x = gf2d_crandom();
+			e->velocity.y = gf2d_crandom();
 			return e;
 		}
 	}
@@ -50,37 +50,31 @@ void update_entities()
 }
 
 //why is this double pointer?
-//void entity_free(Entity** e)
-//{
-//	(*e)->inUse = 0;
-//	*e = 0;
-//}
-
-void entity_free(Entity* e)
+void entity_free(Entity** e)
 {
-	e->inUse = 0;
-	e->sprite = NULL;
-	e = 0;
+	(*e)->inUse = 0;
+	*e = 0;
 }
+
+//void entity_free(Entity* e)
+//{
+//	e->inUse = 0;
+//	e->sprite = NULL;
+//	e = 0;
+//}
 
 void entity_update(Entity* e)
 {
 	//if entity is out of screen bounds, free it
 	if (e->position.x > 1250 || e->position.x < -1250 || e->position.y > 750 || e->position.y < -750)
 	{
-		entity_free(e);
+		entity_free(&e);
 		slog("entity out of bounds, deleted");
 		return;
 	}
-	//e->acceleration.x = gf2d_crandom();
-	//e->acceleration.y = gf2d_crandom();
-	vector2d_add(e->position, e->position, e->acceleration);
-	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
 
-	if (e->position.y < 100)
-	{
-		entity_free(e);
-	}
+	vector2d_add(e->position, e->position, e->velocity);
+	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
 
 }
 
@@ -90,6 +84,15 @@ void entity_set_position(Entity* e, int x, int y)
 	{
 		e->position.x = x;
 		e->position.y = y;
+	}
+}
+
+void entity_set_velocity(Entity* e, float x, float y)
+{
+	if (e)
+	{
+		e->velocity.x = x;
+		e->velocity.y = y;
 	}
 }
 

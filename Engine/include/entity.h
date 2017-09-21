@@ -8,7 +8,7 @@ typedef struct Entity_S
 	short inUse;
 	Vector2D position;
 	Vector2D scale;
-	Vector2D acceleration;
+	Vector2D velocity;
 	Sprite* sprite;
 
 	void(*update)(struct Entity_S *self);
@@ -28,27 +28,36 @@ void clearEntList();
 Entity* entity_new();
 
 /**
-* @brief set in use to 0, set pointer to 0 
+* @brief free entity
+* @param Entity**	Double pointer to Entity you want to free
 */
-//void entity_free(Entity** e);
-void entity_free(Entity* e);
+
+void entity_free(Entity** e);
 
 /**
 * @brief update entity
+* @param Entity**	Double pointer to Entity you want to update
 */
 void entity_update(Entity* e);
 
 /**
-* @brief go thru entity list and update all entities
+* @brief go thru entity list and update all 
 */
 void update_entities();
 
 /**
 * @brief set position of Entity e
-* @param e pointer to entity
-* @param x position to set entity position x
-* @param y position to set entity position y
+* @param e*		pointer to entity
+* @param int x  position to set entity position x
+* @param int y  position to set entity position y
 */
 void entity_set_position(Entity* e, int x, int y);
 
+/**
+* @brief set velocity of Entity e
+* @param e*			pointer to entity
+* @param float x	position to set entity position x
+* @param float y	position to set entity position y
+*/
+void entity_set_velocity(Entity* e, float x, float y);
 #endif // !__ENTITY_H__
