@@ -11,6 +11,7 @@ typedef struct Entity_S
 	Vector2D scale;
 	Vector2D velocity;
 	Sprite* sprite;
+	SDL_Rect bounding_box;
 
 	void(*update)(struct Entity_S *self);
 }Entity;

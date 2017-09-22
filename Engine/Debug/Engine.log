@@ -1,3 +1,12 @@
 ﻿  entity.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(42): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(43): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(83): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(84): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(85): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(86): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(92): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

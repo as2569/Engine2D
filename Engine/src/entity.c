@@ -39,6 +39,10 @@ Entity* entity_setup_character(Entity* e)
 		e->sprite = gf2d_sprite_load_all("images/testSprites.png", 32, 32, 1);
 		e->size.x = 32 * e->scale.x;
 		e->size.y = 32 * e->scale.y;
+		e->bounding_box.h = e->size.x;
+		e->bounding_box.w = e->size.y;
+		e->bounding_box.x = e->position.x;
+		e->bounding_box.y = e->position.y;
 		e->velocity.x = gf2d_crandom();
 		e->velocity.y = gf2d_crandom();
 	}
@@ -76,8 +80,16 @@ void entity_update(Entity* e)
 	}
 
 	vector2d_add(e->position, e->position, e->velocity);
+	e->bounding_box.h = e->size.x;
+	e->bounding_box.w = e->size.y / 2;
+	e->bounding_box.x = e->position.x + 16;
+	e->bounding_box.y = e->position.y;
+
 	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
 
+	//bounding box DEBUG
+	Vector4D col = { 255, 0, 255, 255 };
+	gf2d_draw_rect(e->bounding_box, col);
 }
 
 void entity_set_position(Entity* e, int x, int y)
