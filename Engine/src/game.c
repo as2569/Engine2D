@@ -53,23 +53,14 @@ int main(int argc, char * argv[])
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
 
-		/* Check for events */
-		//while (SDL_PollEvent(&this_event))
-		//{  /* Loop until there are no events left on the queue */
-		//	switch(this_event.type)
-		//	{  
-
-		//		case SDL_KEYDOWN:  // Handle a KEYDOWN event 
-		//		slog("Oh! Key press\n");
-		//		e = entity_new();
-		//		entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-		//	}
-		//}
-
         /*update things here*/
-        SDL_GetMouseState(&mx,&my);
         mf+=0.1f;
-        if (mf >= 16.0)mf = 0;
+        if(mf >= 16.0)mf = 0;
+		
+		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
+		{
+			slog("mouse click at %i %i", mx, my);
+		}
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame

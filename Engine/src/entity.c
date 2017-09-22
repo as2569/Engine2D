@@ -66,7 +66,7 @@ void entity_free(Entity** e)
 void entity_update(Entity* e)
 {
 	//if entity is out of screen bounds, free it
-	if (e->position.x > 1250 || e->position.x < -1250 || e->position.y > 750 || e->position.y < -750)
+	if (e->position.x > 1200 || e->position.x < 0 || e->position.y > 720 || e->position.y < 0)
 	{
 		entity_free(&e);
 		slog("entity out of bounds, deleted");
