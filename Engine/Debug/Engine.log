@@ -1,6 +1,3 @@
-﻿  game.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(20): warning C4101: 'this_event': unreferenced local variable
-  entity.c
-  Generating Code...
+﻿  entity.c
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

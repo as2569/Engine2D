@@ -15,25 +15,35 @@ void clearEntList()
 Entity* entity_new()
 {
 	Entity *e = NULL;
-	Sprite* new_sprite = gf2d_sprite_load_all("images/testSprites.png", 32, 32, 1);
-
 	for (int i = 0; i < MAX_ENTITIES; i++)
 	{
 		if (!entList[i].inUse)
 		{
 			Entity *e = &entList[i];
-			entList[i].inUse = 1;
-			entList[i].position.x = 0;
-			entList[i].position.y = 0;
-			entList[i].scale.x = 2;
-			entList[i].scale.y = 2;
-			entList[i].sprite = new_sprite;
-			e->velocity.x = gf2d_crandom();
-			e->velocity.y = gf2d_crandom();
+			e->inUse = 1;
+			//slog("new ent");
 			return e;
 		}
 	}
 	return NULL;
+}
+
+Entity* entity_setup_character(Entity* e)
+{
+	if (e)
+	{
+		e->position.x = 0;
+		e->position.y = 0;
+		e->scale.x = 2;
+		e->scale.y = 2;
+		e->sprite = gf2d_sprite_load_all("images/testSprites.png", 32, 32, 1);
+		e->size.x = 32 * e->scale.x;
+		e->size.y = 32 * e->scale.y;
+		e->velocity.x = gf2d_crandom();
+		e->velocity.y = gf2d_crandom();
+	}
+	//slog("ent setup");
+	return e;
 }
 
 void update_entities()
@@ -49,19 +59,11 @@ void update_entities()
 	}
 }
 
-//why is this double pointer?
 void entity_free(Entity** e)
 {
 	(*e)->inUse = 0;
 	*e = 0;
 }
-
-//void entity_free(Entity* e)
-//{
-//	e->inUse = 0;
-//	e->sprite = NULL;
-//	e = 0;
-//}
 
 void entity_update(Entity* e)
 {
@@ -69,7 +71,7 @@ void entity_update(Entity* e)
 	if (e->position.x > 1200 || e->position.x < 0 || e->position.y > 720 || e->position.y < 0)
 	{
 		entity_free(&e);
-		slog("entity out of bounds, deleted");
+		//slog("entity out of bounds, deleted");
 		return;
 	}
 

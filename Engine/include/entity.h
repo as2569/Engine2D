@@ -6,6 +6,7 @@
 typedef struct Entity_S
 {
 	short inUse;
+	Vector2D size;
 	Vector2D position;
 	Vector2D scale;
 	Vector2D velocity;
@@ -28,10 +29,16 @@ void clearEntList();
 Entity* entity_new();
 
 /**
+* @brief setup all variables of a character entity
+* @param Entity*	Pointer to character Entity to be set up 
+* @return Entity*
+*/
+Entity* entity_setup_character(Entity* e);
+
+/**
 * @brief free entity
 * @param Entity**	Double pointer to Entity you want to free
 */
-
 void entity_free(Entity** e);
 
 /**

@@ -59,7 +59,7 @@ int main(int argc, char * argv[])
 		
 		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
-			slog("mouse click at %i %i", mx, my);
+			//slog("mouse click at %i %i", mx, my);
 		}
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
@@ -69,6 +69,7 @@ int main(int argc, char * argv[])
 		if(keys[SDL_SCANCODE_SPACE])
 		{
 			e = entity_new();
+			e = entity_setup_character(e);
 			entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 		}
 
