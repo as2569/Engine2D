@@ -9,11 +9,13 @@
 #define WINDOW_WIDTH 1200
 #define WINDOW_HEIGHT 720
 
+extern Entity entList[MAX_ENTITIES];
+
 int main(int argc, char * argv[])
 {
 	//my variables
 	Entity* e;
-
+	int test;
     /*variable declarations*/
     int done = 0;
     const Uint8 * keys;
@@ -59,7 +61,19 @@ int main(int argc, char * argv[])
 		
 		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
-			//slog("mouse click at %i %i", mx, my);
+			for (int i = 0; i < MAX_ENTITIES; i++)
+			{
+				Entity *e = &entList[i];
+				if ((mx >= e->bounding_box.x)
+					&& (mx <= (e->bounding_box.x + e->bounding_box.w))
+					&& (my >= e->bounding_box.y)
+					&& (my <= (e->bounding_box.y + e->bounding_box.h)))
+				{
+					slog("clicked on ent");
+					entity_free(&e);
+				}
+
+			}
 		}
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
