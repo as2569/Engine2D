@@ -1,7 +1,7 @@
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#define MAX_ENTITIES 1
+#define MAX_ENTITIES 50
 
 typedef struct Entity_S
 {

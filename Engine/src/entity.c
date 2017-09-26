@@ -82,7 +82,7 @@ void entity_update(Entity* e)
 	vector2d_add(e->position, e->position, e->velocity);
 	e->bounding_box.h = e->size.x;
 	e->bounding_box.w = e->size.y / 2;
-	e->bounding_box.x = e->position.x + 16;
+	e->bounding_box.x = e->position.x + e->bounding_box.w / 2;
 	e->bounding_box.y = e->position.y;
 
 	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
