@@ -16,6 +16,7 @@ int main(int argc, char * argv[])
 	//my variables
 	Entity* e;
 	int test;
+
     /*variable declarations*/
     int done = 0;
     const Uint8 * keys;
@@ -68,11 +69,11 @@ int main(int argc, char * argv[])
 					&& (mx <= (e->bounding_box.x + e->bounding_box.w))
 					&& (my >= e->bounding_box.y)
 					&& (my <= (e->bounding_box.y + e->bounding_box.h)))
-				{
-					slog("clicked on ent");
-					entity_free(&e);
-				}
-
+					{
+						e->free(&e);
+						//entity_free(&e); //now a function pointer
+						slog("clicked on ent");
+					}
 			}
 		}
 

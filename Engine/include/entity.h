@@ -14,6 +14,7 @@ typedef struct Entity_S
 	SDL_Rect bounding_box;
 
 	void(*update)(struct Entity_S *self);
+	void(*free)(struct Entity_S *self);
 }Entity;
 
 extern Entity entList[MAX_ENTITIES];
@@ -44,7 +45,7 @@ void entity_free(Entity** e);
 
 /**
 * @brief update entity
-* @param Entity**	Double pointer to Entity you want to update
+* @param Entity*	Pointer to Entity you want to update
 */
 void entity_update(Entity* e);
 

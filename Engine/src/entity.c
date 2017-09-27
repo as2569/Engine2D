@@ -32,6 +32,7 @@ Entity* entity_setup_character(Entity* e)
 {
 	if (e)
 	{
+		//variables
 		e->position.x = 0;
 		e->position.y = 0;
 		e->scale.x = 2;
@@ -45,6 +46,10 @@ Entity* entity_setup_character(Entity* e)
 		e->bounding_box.y = e->position.y;
 		e->velocity.x = gf2d_crandom();
 		e->velocity.y = gf2d_crandom();
+
+		//function pointers
+		e->update = entity_update;
+		e->free = entity_free;
 	}
 	//slog("ent setup");
 	return e;
@@ -56,7 +61,7 @@ void update_entities()
 	{
 		if (entList[i].inUse)
 		{
-			entList[i].update = entity_update;
+			//entList[i].update = entity_update; //no longer setup function pointer in update
 			Entity *e = &entList[i];
 			(*e->update)(e);
 		}
