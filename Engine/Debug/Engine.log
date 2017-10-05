@@ -1,19 +1,7 @@
 ﻿  game.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(73): warning C4047: 'function': 'Entity_S *' differs in levels of indirection from 'Entity **'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(73): warning C4024: 'function through pointer': different types for formal and actual parameter 1
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(23): warning C4101: 'this_event': unreferenced local variable
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(18): warning C4101: 'test': unreferenced local variable
-  entity.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(43): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(52): warning C4028: formal parameter 1 different from declaration
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(88): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(89): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(90): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(91): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(97): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
-  Generating Code...
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(95): warning C4047: 'function': 'Entity_S *' differs in levels of indirection from 'Entity **'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(95): warning C4024: 'function through pointer': different types for formal and actual parameter 1
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(48): warning C4101: 'this_event': unreferenced local variable
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(43): warning C4101: 'test': unreferenced local variable
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)
