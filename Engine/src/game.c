@@ -5,36 +5,12 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "entity.h"
+#include "collisions.h"
 
 #define WINDOW_WIDTH 1200
 #define WINDOW_HEIGHT 720
 
 extern Entity entList[MAX_ENTITIES];
-
-Entity* point_to_entity(int x, int y, Entity* ent)
-{
-	if(ent->inUse)
-	{
-		if ((x >= ent->bounding_box.x)
-			&& (x <= (ent->bounding_box.x + ent->bounding_box.w))
-			&& (y >= ent->bounding_box.y)
-			&& (y <= (ent->bounding_box.y + ent->bounding_box.h)))
-		{
-			//ent is an entity in use
-			return ent;
-		}
-		else
-		{	
-			//ent is not in use
-			return NULL;
-		}
-	}
-	else
-	{
-		//ent is not valid
-		return NULL;
-	}
-}
 
 int main(int argc, char * argv[])
 {
