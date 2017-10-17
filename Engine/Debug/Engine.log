@@ -1,7 +1,9 @@
 ﻿  game.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(71): warning C4047: 'function': 'Entity_S *' differs in levels of indirection from 'Entity **'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(71): warning C4024: 'function through pointer': different types for formal and actual parameter 1
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(74): warning C4047: 'function': 'Entity_S *' differs in levels of indirection from 'Entity **'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(74): warning C4024: 'function through pointer': different types for formal and actual parameter 1
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(89): warning C4013: 'g2fd_sprite_draw' undefined; assuming extern returning int
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(24): warning C4101: 'this_event': unreferenced local variable
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(19): warning C4101: 'test': unreferenced local variable
-  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
-  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(89): warning C4700: uninitialized local variable 'block' used
+game.obj : error LNK2019: unresolved external symbol _g2fd_sprite_draw referenced in function _SDL_main
+C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe : fatal error LNK1120: 1 unresolved externals

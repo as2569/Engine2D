@@ -23,11 +23,13 @@ int main(int argc, char * argv[])
     const Uint8 * keys;
 	SDL_Event this_event;
     Sprite *sprite;
-	
+	Sprite *block;
+
 	//mouse variables
     int mx,my;
     float mf = 0;
     Sprite *mouse;
+	
     Vector4D mouseColor = {255,100,255,200};
 
     /*program initialization*/
@@ -48,6 +50,7 @@ int main(int argc, char * argv[])
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+	//block = g2fd_sprite_load_all("images/square.png", 32, 32, 16);
 
 	clearEntList();
 
@@ -86,6 +89,9 @@ int main(int argc, char * argv[])
 
         //backgrounds drawn first
         gf2d_sprite_draw_image(sprite,vector2d(0,0));
+
+		//draw shit
+		g2fd_sprite_draw(block, vector2d(50, 50));
 
 		update_entities();
 
