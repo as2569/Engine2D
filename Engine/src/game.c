@@ -10,20 +10,25 @@
 #define WINDOW_WIDTH 1200
 #define WINDOW_HEIGHT 720
 
+//externs
 extern Entity entList[MAX_ENTITIES];
+
+//globals
+int content_factor = 0;
+float dtime = 0;
 
 int main(int argc, char * argv[])
 {
 	//my variables
 	Entity* e;
 	int test;
+	int temp = 0;
 
     /*variable declarations*/
     int done = 0;
     const Uint8 * keys;
 	SDL_Event this_event;
     Sprite *sprite;
-	Sprite *block;
 
 	//mouse variables
     int mx,my;
@@ -50,13 +55,15 @@ int main(int argc, char * argv[])
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
-	//block = g2fd_sprite_load_all("images/square.png", 32, 32, 16);
+	//block = g2fd_sprite_load_image("images/square.png");
 
 	clearEntList();
 
     /*main game loop*/
     while(!done)
     {
+		dtime = delta_time();
+
         SDL_PumpEvents();   // update SDL's internal event structures
         keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
 
@@ -75,6 +82,22 @@ int main(int argc, char * argv[])
 				}
 			}
 		}
+		temp = 0;
+		for (int i = 0; i < MAX_ENTITIES; i++)
+		{
+			if (entList[i].inUse == 1)
+			{
+				temp += entList[i].happiness;
+			}
+		}
+
+		if (entity_count() != 0)
+		{
+			content_factor = temp / entity_count();
+		}
+		printf("\ntemp %i", content_factor);
+		//update content factor
+		//content_factor = 
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
@@ -86,12 +109,12 @@ int main(int argc, char * argv[])
 			e = entity_setup_character(e);
 			entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
 		}
-
+		 
         //backgrounds drawn first
         gf2d_sprite_draw_image(sprite,vector2d(0,0));
 
 		//draw shit
-		g2fd_sprite_draw(block, vector2d(50, 50));
+		//g2fd_sprite_draw(block, vector2d(50, 50));
 
 		update_entities();
 

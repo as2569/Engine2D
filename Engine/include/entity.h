@@ -12,12 +12,15 @@ typedef struct Entity_S
 	Vector2D velocity;
 	Sprite* sprite;
 	SDL_Rect bounding_box;
+	int internal_time;
+	int happiness;
 
 	void(*update)(struct Entity_S *self);
 	void(*free)(struct Entity_S *self);
 }Entity;
 
 extern Entity entList[MAX_ENTITIES];
+
 
 /**
 * @brief reserve memory for entity list and set it to 0
@@ -69,4 +72,10 @@ void entity_set_position(Entity* e, int x, int y);
 * @param float y	position to set entity position y
 */
 void entity_set_velocity(Entity* e, float x, float y);
+
+/**
+* @brief count current number of entities
+*/
+int entity_count();
+
 #endif // !__ENTITY_H__
