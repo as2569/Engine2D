@@ -68,6 +68,9 @@
     <ClCompile Include="src\manager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\sound.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile">
@@ -112,6 +115,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

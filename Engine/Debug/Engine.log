@@ -1,47 +1,4 @@
-﻿  time.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\time.c(11): warning C4013: 'SDL_GetTicks' undefined; assuming extern returning int
-  manager.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(40): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(49): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1195): note: see declaration of 'fscanf'
-  gf2d_graphics.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(127): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(132): warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(void)'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(203): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(220): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(221): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(222): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(223): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
-  game.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(83): warning C4047: 'function': 'Entity_S *' differs in levels of indirection from 'Entity **'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(83): warning C4024: 'function through pointer': different types for formal and actual parameter 1
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(29): warning C4101: 'this_event': unreferenced local variable
-  entity.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(47): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(55): warning C4028: formal parameter 1 different from declaration
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(88): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(96): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(97): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(98): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(99): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(106): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
-  buildings.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(43): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(49): warning C4028: formal parameter 1 different from declaration
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(50): warning C4028: formal parameter 1 different from declaration
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(87): warning C4133: 'function': incompatible types - from 'Building *' to 'Entity_S *'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(107): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(108): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(109): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(110): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(116): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
-  Generating Code...
+﻿  sound.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\sound.c(40): warning C4715: 'play_song': not all control paths return a value
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

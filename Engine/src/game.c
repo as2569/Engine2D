@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <time.h>
 #include "gf2d_graphics.h"
@@ -9,6 +10,7 @@
 #include "collisions.h"
 #include "buildings.h"
 #include "def.h"
+#include "sound.h"
 
 Entity entList[MAX_ENTITIES];
 Building buildingList[MAX_BUILDINGS];
@@ -17,6 +19,7 @@ int level_array[16];
 int influence = 0;
 int happiness_avg = 1;
 float dtime = 0;
+Mix_Music* music; 
 
 int main(int argc, char * argv[])
 {
@@ -58,12 +61,15 @@ int main(int argc, char * argv[])
 
 	clearEntList();
 	clearBuildingList();
-
+	load_song();
 	read_level_file();
 	generate_level();
+	play_song();
+
     /*main game loop*/
     while(!done)
     {
+		
 		dtime = delta_time();
 
         SDL_PumpEvents();   // update SDL's internal event structures
