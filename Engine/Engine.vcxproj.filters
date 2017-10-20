@@ -62,6 +62,12 @@
     <ClCompile Include="src\collisions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\buildings.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\manager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile">
@@ -97,6 +103,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\buildings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

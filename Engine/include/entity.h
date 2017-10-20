@@ -12,15 +12,15 @@ typedef struct Entity_S
 	Vector2D velocity;
 	Sprite* sprite;
 	SDL_Rect bounding_box;
+
+	Vector2D destination;
+
 	int internal_time;
 	int happiness;
 
 	void(*update)(struct Entity_S *self);
 	void(*free)(struct Entity_S *self);
 }Entity;
-
-extern Entity entList[MAX_ENTITIES];
-
 
 /**
 * @brief reserve memory for entity list and set it to 0

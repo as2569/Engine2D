@@ -1,4 +1,5 @@
 #include "time.h"
+#include "def.h"
 
 int old_time;
 int current_time;

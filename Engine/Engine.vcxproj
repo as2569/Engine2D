@@ -155,6 +155,7 @@
     <Image Include="..\images\space_bug_top.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\buildings.c" />
     <ClCompile Include="src\collisions.c" />
     <ClCompile Include="src\entity.c" />
     <ClCompile Include="src\game.c" />
@@ -162,6 +163,7 @@
     <ClCompile Include="src\gf2d_graphics.c" />
     <ClCompile Include="src\gf2d_sprite.c" />
     <ClCompile Include="src\gf2d_vector.c" />
+    <ClCompile Include="src\manager.c" />
     <ClCompile Include="src\simple_logger.c" />
     <ClCompile Include="src\time.c" />
   </ItemGroup>
@@ -169,7 +171,9 @@
     <None Include="src\Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\buildings.h" />
     <ClInclude Include="include\collisions.h" />
+    <ClInclude Include="include\def.h" />
     <ClInclude Include="include\entity.h" />
     <ClInclude Include="include\gf2d_draw.h" />
     <ClInclude Include="include\gf2d_graphics.h" />
@@ -177,6 +181,7 @@
     <ClInclude Include="include\gf2d_text.h" />
     <ClInclude Include="include\gf2d_types.h" />
     <ClInclude Include="include\gf2d_vector.h" />
+    <ClInclude Include="include\manager.h" />
     <ClInclude Include="include\simple_logger.h" />
     <ClInclude Include="include\time.h" />
   </ItemGroup>

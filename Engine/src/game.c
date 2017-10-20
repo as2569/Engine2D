@@ -5,24 +5,23 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "entity.h"
+#include "manager.h"
 #include "collisions.h"
+#include "buildings.h"
+#include "def.h"
 
-#define WINDOW_WIDTH 1200
-#define WINDOW_HEIGHT 720
+Entity entList[MAX_ENTITIES];
+Building buildingList[MAX_BUILDINGS];
 
-//externs
-extern Entity entList[MAX_ENTITIES];
-
-//globals
-int content_factor = 0;
+int level_array[16];
+int influence = 0;
+int happiness_avg = 1;
 float dtime = 0;
 
 int main(int argc, char * argv[])
 {
 	//my variables
 	Entity* e;
-	int test;
-	int temp = 0;
 
     /*variable declarations*/
     int done = 0;
@@ -54,11 +53,14 @@ int main(int argc, char * argv[])
     
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
+	//sprite = gf2d_sprite_load_image("images/falowiec.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
-	//block = g2fd_sprite_load_image("images/square.png");
 
 	clearEntList();
+	clearBuildingList();
 
+	read_level_file();
+	generate_level();
     /*main game loop*/
     while(!done)
     {
@@ -70,7 +72,7 @@ int main(int argc, char * argv[])
         /*update things here*/
         mf+=0.1f;
         if(mf >= 16.0)mf = 0;
-		
+
 		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
 			for (int i = 0; i < MAX_ENTITIES; i++)
@@ -82,22 +84,9 @@ int main(int argc, char * argv[])
 				}
 			}
 		}
-		temp = 0;
-		for (int i = 0; i < MAX_ENTITIES; i++)
-		{
-			if (entList[i].inUse == 1)
-			{
-				temp += entList[i].happiness;
-			}
-		}
-
-		if (entity_count() != 0)
-		{
-			content_factor = temp / entity_count();
-		}
-		printf("\ntemp %i", content_factor);
-		//update content factor
-		//content_factor = 
+		
+		update_content(&happiness_avg);
+		//printf("\nhappiness %i", happiness_avg);
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
@@ -112,10 +101,8 @@ int main(int argc, char * argv[])
 		 
         //backgrounds drawn first
         gf2d_sprite_draw_image(sprite,vector2d(0,0));
-
-		//draw shit
-		//g2fd_sprite_draw(block, vector2d(50, 50));
-
+	
+		update_buildings();
 		update_entities();
 
         //UI elements last

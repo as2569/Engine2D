@@ -4,12 +4,10 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "entity.h"
+#include "def.h"
 
+extern Entity entList[MAX_ENTITIES];
 extern float dtime;
-
-Entity entList[MAX_ENTITIES];
-
-int count;
 
 void clearEntList()
 {
@@ -25,7 +23,6 @@ Entity* entity_new()
 		{
 			Entity *e = &entList[i];
 			e->inUse = 1;
-			//slog("new ent");
 			return e;
 		}
 	}
@@ -52,6 +49,7 @@ Entity* entity_setup_character(Entity* e)
 		e->velocity.y = gf2d_crandom();
 		e->happiness = 25;
 		e->internal_time = 500;
+
 		//function pointers
 		e->update = entity_update;
 		e->free = entity_free;
@@ -84,7 +82,6 @@ void entity_update(Entity* e)
 	if (e->position.x > 1200 || e->position.x < 0 || e->position.y > 720 || e->position.y < 0)
 	{
 		entity_free(&e);
-		//slog("entity out of bounds, deleted");
 		return;
 	}
 	//update time and happiness
@@ -93,7 +90,6 @@ void entity_update(Entity* e)
 	{
 		e->internal_time = 500;
 		e->happiness -= 1;
-		printf("here");
 	}
 
 	vector2d_add(e->position, e->position, e->velocity);
@@ -130,7 +126,7 @@ void entity_set_velocity(Entity* e, float x, float y)
 
 int entity_count()
 {
-	count = 0;
+	int count = 0;
 	for (int i = 0; i < MAX_ENTITIES; i++)
 	{
 		if (entList[i].inUse)

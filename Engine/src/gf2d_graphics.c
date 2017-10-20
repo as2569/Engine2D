@@ -3,6 +3,7 @@
 
 #include "gf2d_graphics.h"
 #include "simple_logger.h"
+#include "def.h"
 
 /*local types*/
 typedef struct
