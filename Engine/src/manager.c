@@ -11,11 +11,14 @@
 
 extern Entity entList[MAX_ENTITIES];
 extern level_array[16];
+extern int happiness_avg;
+extern float dtime;
 
 FILE *myFile;
 Building* b;
+int influence_timer = INFLUENCE_TICK;
 
-void update_content(int *happiness_average)
+void update_happiness(int *happiness)
 {
 	//move this to a separate file
 	int temp = 0;
@@ -32,7 +35,17 @@ void update_content(int *happiness_average)
 	{
 		satisfaction = temp / entity_count();
 	}
-	(*happiness_average) = satisfaction;
+	(*happiness) = satisfaction;
+}
+
+void update_influence(int* influence)
+{
+	influence_timer -= dtime;
+	if (influence_timer <= 0)
+	{
+		(*influence) = (*influence) + happiness_avg;
+		influence_timer = INFLUENCE_TICK;
+	}
 }
 
 void read_level_file()

@@ -167,6 +167,7 @@
     <ClCompile Include="src\simple_logger.c" />
     <ClCompile Include="src\sound.c" />
     <ClCompile Include="src\time.c" />
+    <ClCompile Include="src\user_interface.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Makefile" />
@@ -186,6 +187,7 @@
     <ClInclude Include="include\simple_logger.h" />
     <ClInclude Include="include\sound.h" />
     <ClInclude Include="include\time.h" />
+    <ClInclude Include="include\user_interface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

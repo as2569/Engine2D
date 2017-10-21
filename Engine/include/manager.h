@@ -1,7 +1,9 @@
 #ifndef __MANAGER_H__
 #define __MANAGER_H__
 
-void update_content(int* happiness_average);
+void update_happiness(int* happiness);
+
+void update_influence(int* influence);
 
 void read_level_file();
 

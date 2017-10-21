@@ -11,18 +11,25 @@
 #include "buildings.h"
 #include "def.h"
 #include "sound.h"
+#include "user_interface.h"
 
 Entity entList[MAX_ENTITIES];
 Building buildingList[MAX_BUILDINGS];
+ui_element uiList[2];
 
 int level_array[16];
-int influence = 0;
-int happiness_avg = 1;
+int influence = 100;
+int happiness_avg = 0;
 float dtime = 0;
+
 Mix_Music* music; 
 
 int main(int argc, char * argv[])
 {
+	//ui element
+	ui_element *influence_ui;
+	ui_element *happiness_ui;
+	
 	//my variables
 	Entity* e;
 
@@ -61,6 +68,10 @@ int main(int argc, char * argv[])
 
 	clearEntList();
 	clearBuildingList();
+	
+	happiness_ui = new_ui_element(0);
+	influence_ui = new_ui_element(1);
+
 	load_song();
 	read_level_file();
 	generate_level();
@@ -91,8 +102,8 @@ int main(int argc, char * argv[])
 			}
 		}
 		
-		update_content(&happiness_avg);
-		//printf("\nhappiness %i", happiness_avg);
+		update_happiness(&happiness_avg);
+		update_influence(&influence);
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame
@@ -112,6 +123,9 @@ int main(int argc, char * argv[])
 		update_entities();
 
         //UI elements last
+		happiness_ui->update(happiness_ui, happiness_avg);
+		influence_ui->update(influence_ui, influence);
+		printf("hap %i", happiness_avg);
 		gf2d_sprite_draw(
 			mouse,
 			vector2d(mx, my),

@@ -6,5 +6,8 @@
 
 #define MAX_LEVEL_WIDTH 10
 
+#define INFLUENCE_TICK 1000
+#define INFLUENCE_INITIAL 100
+
 #endif
 
