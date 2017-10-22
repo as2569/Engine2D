@@ -16,10 +16,11 @@
 Entity entList[MAX_ENTITIES];
 Building buildingList[MAX_BUILDINGS];
 
-int level_array[16];
+int level_array[MAX_LEVEL_WIDTH];
 int influence = 100;
 int happiness_avg = 0;
 float dtime = 0;
+int in_emergency = 0;
 
 Mix_Music* music; 
 
@@ -103,19 +104,35 @@ int main(int argc, char * argv[])
 			}
 		}
 
-		if (keys[SDL_SCANCODE_E])
+		if (keys[SDL_SCANCODE_C])
 		{
 			mouse_target = NULL;
-			slog("\nmouse_target set to NULL");
+			//slog("\nmouse_target set to NULL");
+		}
+		
+		if (keys[SDL_SCANCODE_E])
+		{
+			mouse_target->buildingType = EMERGENCY;
+			in_emergency = 1;
 		}
 
 		if (keys[SDL_SCANCODE_B])
 		{
-			construction_to_valid(mouse_target);
+			if (mouse_target->buildingType == EMERGENCY)
+			{
+				resolve_emergency(mouse_target);
+				mouse_target == NULL;
+			}
+			else
+			{
+				construction_to_apartment(mouse_target);
+				mouse_target == NULL;
+			}
 		}
 
 		update_happiness(&happiness_avg);
 		update_influence(&influence);
+		building_emergency();
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame

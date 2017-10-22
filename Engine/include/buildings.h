@@ -2,7 +2,7 @@
 #define __BUILDINGS_H__
 
 #define MAX_BUILDINGS 50
-typedef enum { EMPTY, CONSTRUCTION, APARTMENT, ELEVATOR } BuildingType;
+typedef enum { EMPTY, CONSTRUCTION, APARTMENT, ELEVATOR, EMERGENCY, RESOLVING} BuildingType;
 
 typedef struct Building_S
 {
@@ -14,6 +14,8 @@ typedef struct Building_S
 	Sprite* sprite;
 	SDL_Rect bounding_box;
 	Vector4D color;
+	int time_to_resolve;
+	int time_to_destroy;
 
 	void(*update)(struct Entity_S *self);
 	void(*free)(struct Entity_S *self);
@@ -72,7 +74,10 @@ int building_count();
 * @brief change under_construction block to valid block
 * @param b	pointer to building that we want to change
 */
-void construction_to_valid(Building* b);
+void construction_to_apartment(Building* b);
+
+//docs
+void resolve_emergency(Building* b);
 
 #endif // !__BUILDINGS_H__
 

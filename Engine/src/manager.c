@@ -10,13 +10,17 @@
 #include "def.h"
 
 extern Entity entList[MAX_ENTITIES];
-extern level_array[16];
+extern Building buildingList[MAX_BUILDINGS];
+extern level_array[MAX_LEVEL_WIDTH];
 extern int happiness_avg;
 extern float dtime;
+extern int in_emergency;
 
 FILE *myFile;
 Building* b;
 int influence_timer = INFLUENCE_TICK;
+int event_timer = EVENT_TICK;
+int event_change = EVENT_CHANCE;
 
 void update_happiness(int *happiness)
 {
@@ -43,8 +47,16 @@ void update_influence(int* influence)
 	influence_timer -= dtime;
 	if (influence_timer <= 0)
 	{
-		(*influence) = (*influence) + happiness_avg;
-		influence_timer = INFLUENCE_TICK;
+		if (in_emergency == 0)//if not in emergency
+		{
+			(*influence) = (*influence) + happiness_avg;
+			influence_timer = INFLUENCE_TICK;
+		}
+		if (in_emergency == 1 && (*influence) > 0)
+		{
+			(*influence) = (*influence) - 25;
+			influence_timer = INFLUENCE_TICK;
+		}
 	}
 }
 
@@ -79,6 +91,30 @@ void generate_level()
 			yPos = yPos - (yPos / 4);
 			xPos = 10 + (j * 100);
 			building_set_position(b, xPos, yPos);
+		}
+	}
+}
+
+void building_emergency()
+{
+	float random;
+	event_timer -= dtime;
+	if (event_timer <= 0 && in_emergency == 0)
+	{
+		random = gf2d_random();
+		if (random < EVENT_CHANCE)
+		{
+			for (int i = 0; i < MAX_BUILDINGS; i++)
+			{
+				b = &buildingList[i];
+				if (b->buildingType == APARTMENT)
+				{
+					b->buildingType = EMERGENCY;
+					event_timer = EVENT_TICK;
+					in_emergency = 1;
+					return;
+				}
+			}
 		}
 	}
 }

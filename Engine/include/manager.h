@@ -9,5 +9,8 @@ void read_level_file();
 
 void generate_level();
 
+void building_emergency();
+
+
 #endif // !__MANAGER_H__
 

@@ -8,6 +8,7 @@
 
 extern Building buildingList[MAX_BUILDINGS];
 extern int influence;
+extern float dtime;
 
 void clearBuildingList()
 {
@@ -45,6 +46,8 @@ Building* building_setup(Building* b, int type)
 		b->bounding_box.w = b->size.y;
 		b->bounding_box.x = b->position.x;
 		b->bounding_box.y = b->position.y;
+		b->time_to_resolve = RESOLVE_TIME;
+		b->time_to_destroy = DESTROY_TIME;
 
 		//function pointers
 		b->update = building_update;
@@ -63,11 +66,18 @@ Building* building_setup(Building* b, int type)
 		{
 			b->buildingType = ELEVATOR;
 		}
+		else if (type == 4)//Emergency
+		{
+			b->buildingType == EMERGENCY;
+		}
+		else if (type == 5)//Emergency
+		{
+			b->buildingType == RESOLVING;
+		}
 		else
 		{
 			b->buildingType = EMPTY;
 		}
-
 	}
 
 	//slog("ent setup");
@@ -106,31 +116,59 @@ void building_update(Building* b)
 	b->bounding_box.x = b->position.x;
 	b->bounding_box.y = b->position.y;
 
+	//check if still in emergency
+	if (b->buildingType == EMERGENCY)
+	{
+		b->time_to_destroy -= dtime;
+		if (b->time_to_destroy <= 0)
+		{
+			b->buildingType = CONSTRUCTION;
+			b->time_to_destroy = DESTROY_TIME;
+			b->time_to_resolve = RESOLVE_TIME;
+		}
+	}
+
+	//check is still resolving
+	if (b->buildingType == RESOLVING)
+	{
+		b->time_to_resolve -= dtime;
+		if (b->time_to_resolve <= 0)
+		{
+			b->buildingType = APARTMENT;
+			b->time_to_resolve = RESOLVE_TIME;
+			b->time_to_destroy = DESTROY_TIME;
+		}
+	}
 	//color
-	if (b->buildingType == 1) //Under construction
+	if (b->buildingType == CONSTRUCTION)
 	{
 		Vector4D temp_vec = { 128, 128, 128, 255 };
 		b->color = temp_vec;
-		b->buildingType = CONSTRUCTION;
 	}
-	else if (b->buildingType == 2) //Apartment
+	else if (b->buildingType == APARTMENT) 
 	{
 		Vector4D temp_vec = { 255, 255, 255, 255 };
 		b->color = temp_vec;
-		b->buildingType = APARTMENT;
 	}
-	else if (b->buildingType == 3) //Elevator
+	else if (b->buildingType == ELEVATOR)
 	{
-		Vector4D temp_vec = { 255, 195, 0, 255 };
+		Vector4D temp_vec = { 255, 220, 0, 255 };
 		b->color = temp_vec;
-		b->buildingType = ELEVATOR;
+	}
+	else if (b->buildingType == EMERGENCY)
+	{
+		Vector4D temp_vec = { 255, 0, 0, 255 };
+		b->color = temp_vec;
+	}
+	else if (b->buildingType == RESOLVING)
+	{
+		Vector4D temp_vec = { 255, 140, 0, 255 };
+		b->color = temp_vec;
 	}
 	else
 	{
 		Vector4D temp_vec = { 0, 0, 0, 0 };
 		b->color = temp_vec;
-		b->buildingType = EMPTY;
-		slog("EMPTY BUILDING");
 	}
 
 	gf2d_sprite_draw(b->sprite, b->position, &b->scale, NULL, NULL, NULL, &b->color, 0);
@@ -138,8 +176,6 @@ void building_update(Building* b)
 	//bounding box DEBUG
 	Vector4D col = { 255, 0, 255, 255 };
 	gf2d_draw_rect(b->bounding_box, col);
-
-	
 
 }
 
@@ -165,7 +201,7 @@ int building_count()
 	return count;
 }
 
-void construction_to_valid(Building* b)
+void construction_to_apartment(Building* b)
 {
 	if (b)
 	{
@@ -175,13 +211,17 @@ void construction_to_valid(Building* b)
 			influence = influence - 100;
 			slog("changed to apartment");
 		}
-		else
-		{
-			slog("building not construction type");
-		}
 	}
-	else
+}
+
+void resolve_emergency(Building* b)
+{
+	if (b)
 	{
-		slog("building in NULL");
+		if (b->buildingType == EMERGENCY)
+		{
+			b->buildingType = RESOLVING;
+			slog("resolving");
+		}
 	}
 }
