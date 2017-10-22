@@ -28,11 +28,9 @@ typedef struct ui_element_S
 
 ui_element* new_ui_element(int type);
 
-//void clear_ui_element(ui_element*);
+void clear_ui_element(ui_element*);
 
 void update_ui_element(ui_element *ui, int num);
-
-void update_ui();
 
 #endif
 

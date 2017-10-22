@@ -2,10 +2,11 @@
 #define __BUILDINGS_H__
 
 #define MAX_BUILDINGS 50
+typedef enum { EMPTY, CONSTRUCTION, APARTMENT, ELEVATOR } BuildingType;
 
 typedef struct Building_S
 {
-	enum{Empty, UnderConstruction, Apartment, Elevator} buildingType;
+	BuildingType buildingType;
 	short inUse;
 	Vector2D size;
 	Vector2D position;
@@ -25,28 +26,28 @@ void clearBuildingList();
 
 /**
 * @brief find a next available spot in the list, set it's in use to 1, return the pointer
-* @return Entity*
+* @return Building*
 */
 Building* building_new();
 
 /**
 * @brief setup all variables of a character entity
-* @param Entity*	Pointer to building object to be set up
-* @return Entity*
+* @param b	Pointer to building object to be set up
+* @return Building*
 */
-Building* building_setup(Building* e, int type);
+Building* building_setup(Building* b, int type);
 
 /**
 * @brief free entity
-* @param Entity**	Double pointer to Entity you want to free
+* @param b	Double pointer to Building you want to free
 */
-void building_free(Building** e);
+void building_free(Building** b);
 
 /**
 * @brief update entity
-* @param Entity*	Pointer to Entity you want to update
+* @param b	Pointer to Building you want to update
 */
-void building_update(Building* e);
+void building_update(Building* b);
 
 /**
 * @brief go thru building list and update all
@@ -54,17 +55,24 @@ void building_update(Building* e);
 void update_buildings();
 
 /**
-* @brief set position of Building e
-* @param e*		pointer to entity
-* @param int x  position to set building position x
-* @param int y  position to set building position y
+* @brief set position of Building b
+* @param b*		pointer to Building
+* @param x  position to set building position x
+* @param y  position to set building position y
 */
-void building_set_position(Building* e, int x, int y);
+void building_set_position(Building* b, int x, int y);
 
 /**
 * @brief count current number of buildings
+* @return number of buildings
 */
 int building_count();
+
+/**
+* @brief change under_construction block to valid block
+* @param b	pointer to building that we want to change
+*/
+void construction_to_valid(Building* b);
 
 #endif // !__BUILDINGS_H__
 

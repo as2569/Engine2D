@@ -7,15 +7,14 @@
 #include "simple_logger.h"
 #include "entity.h"
 #include "manager.h"
-#include "collisions.h"
 #include "buildings.h"
+#include "collisions.h"
 #include "def.h"
 #include "sound.h"
 #include "user_interface.h"
 
 Entity entList[MAX_ENTITIES];
 Building buildingList[MAX_BUILDINGS];
-ui_element uiList[2];
 
 int level_array[16];
 int influence = 100;
@@ -32,6 +31,8 @@ int main(int argc, char * argv[])
 	
 	//my variables
 	Entity* e;
+	Building* b;
+	Building* mouse_target = NULL;
 
     /*variable declarations*/
     int done = 0;
@@ -92,16 +93,27 @@ int main(int argc, char * argv[])
 
 		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
-			for (int i = 0; i < MAX_ENTITIES; i++)
+			for (int i = 0; i < MAX_BUILDINGS; i++)
 			{
-				e = point_to_entity(mx, my, &entList[i]);
-				if(e)
+				b = point_to_building(mx, my, &buildingList[i]);
+				if (b)
 				{
-					e->free(&e);
+					mouse_target = b;
 				}
 			}
 		}
-		
+
+		if (keys[SDL_SCANCODE_E])
+		{
+			mouse_target = NULL;
+			slog("\nmouse_target set to NULL");
+		}
+
+		if (keys[SDL_SCANCODE_B])
+		{
+			construction_to_valid(mouse_target);
+		}
+
 		update_happiness(&happiness_avg);
 		update_influence(&influence);
 
@@ -125,7 +137,7 @@ int main(int argc, char * argv[])
         //UI elements last
 		happiness_ui->update(happiness_ui, happiness_avg);
 		influence_ui->update(influence_ui, influence);
-		printf("hap %i", happiness_avg);
+
 		gf2d_sprite_draw(
 			mouse,
 			vector2d(mx, my),
@@ -134,7 +146,7 @@ int main(int argc, char * argv[])
 			NULL,
 			NULL,
 			&mouseColor,
-			(int)mf);
+			5);
 
         gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
         

@@ -57,14 +57,14 @@ ui_element* new_ui_element(int type)
 		ui->digit_scale.y = 1;
 	}
 	ui->update = update_ui_element;
-	//ui->free = 
+	ui->free = clear_ui_element;
 	return ui;
 }
 
-//void clear_ui_element(ui_element*)
-//{
-//	memset(&ui_element, 0, sizeof(ui_element));
-//}
+void clear_ui_element(ui_element* ui)
+{
+	memset(&ui, 0, sizeof(ui_element));
+}
 
 void update_ui_element(ui_element *ui, int num)
 {
@@ -76,9 +76,4 @@ void update_ui_element(ui_element *ui, int num)
 	gf2d_sprite_draw(ui->fd_sprite, ui->fd_pos, &ui->digit_scale, NULL, NULL, NULL, NULL, ui->fd_value);
 	gf2d_sprite_draw(ui->sd_sprite, ui->sd_pos, &ui->digit_scale, NULL, NULL, NULL, NULL, ui->sd_value);
 	gf2d_sprite_draw(ui->td_sprite, ui->td_pos, &ui->digit_scale, NULL, NULL, NULL, NULL, ui->td_value);
-}
-
-void update_ui()
-{
-
 }
