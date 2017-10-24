@@ -2,6 +2,7 @@
 #define __ENTITY_H__
 
 #define MAX_ENTITIES 50
+typedef enum {atHome, atWork, inTransit} EntityState;
 
 typedef struct Entity_S
 {
@@ -12,14 +13,15 @@ typedef struct Entity_S
 	Vector2D velocity;
 	Sprite* sprite;
 	SDL_Rect bounding_box;
-
+	Vector2D home;
+	Vector2D work;
 	Vector2D destination;
 
 	int internal_time;
 	int happiness;
 
-	void(*update)(struct Entity_S *self);
-	void(*free)(struct Entity_S *self);
+	void(*update_e)(struct Entity_S *self);
+	void(*free_e)(struct Entity_S *self);
 }Entity;
 
 /**
@@ -77,5 +79,12 @@ void entity_set_velocity(Entity* e, float x, float y);
 * @brief count current number of entities
 */
 int entity_count();
+
+//docs
+Entity* entity_set_home(Entity* e, float x, float y);
+
+int vec_to_vec(Vector2D this_vec, Vector2D other_vec);
+
+Entity* entity_set_destination(Entity* e, float x, float y);
 
 #endif // !__ENTITY_H__

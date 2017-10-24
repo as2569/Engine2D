@@ -1,8 +1,10 @@
 #include <SDL.h>
+#include <stdio.h>
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
+#include "buildings.h"
 #include "entity.h"
 #include "def.h"
 
@@ -45,14 +47,14 @@ Entity* entity_setup_character(Entity* e)
 		e->bounding_box.w = e->size.y;
 		e->bounding_box.x = e->position.x;
 		e->bounding_box.y = e->position.y;
-		e->velocity.x = gf2d_crandom();
-		e->velocity.y = gf2d_crandom();
+		e->velocity.x = 0;
+		e->velocity.y = 0;
 		e->happiness = 25;
 		e->internal_time = 500;
 
 		//function pointers
-		e->update = entity_update;
-		e->free = entity_free;
+		e->update_e = entity_update;
+		e->free_e = entity_free;
 	}
 	//slog("ent setup");
 	return e;
@@ -65,7 +67,7 @@ void update_entities()
 		if (entList[i].inUse)
 		{
 			Entity *e = &entList[i];
-			(*e->update)(e);
+			(*e->update_e)(e);
 		}
 	}
 }
@@ -78,12 +80,13 @@ void entity_free(Entity** e)
 
 void entity_update(Entity* e)
 {
-	//if entity is out of screen bounds, free it
-	if (e->position.x > 1200 || e->position.x < 0 || e->position.y > 720 || e->position.y < 0)
-	{
-		entity_free(&e);
-		return;
-	}
+	////if entity is out of screen bounds, free it
+	//if (e->position.x > 1200 || e->position.x < 0 || e->position.y > 720 || e->position.y < 0)
+	//{
+	//	entity_free(&e);
+	//	return;
+	//}
+
 	//update time and happiness
 	e->internal_time -= dtime;
 	if (e->internal_time <= 0)
@@ -91,6 +94,8 @@ void entity_update(Entity* e)
 		e->internal_time = 500;
 		e->happiness -= 1;
 	}
+
+	vec_to_vec(e->position, e->destination);
 
 	vector2d_add(e->position, e->position, e->velocity);
 	e->bounding_box.h = e->size.x;
@@ -135,4 +140,35 @@ int entity_count()
 		}
 	}
 	return count;
+}
+
+Entity* entity_set_destination(Entity* e, float x, float y)
+{
+	e->destination.x = x;
+	e->destination.y = y;
+
+	return e;
+}
+
+Entity* entity_set_home(Entity* e, float x, float y)
+{
+	e->home.x = x;
+	e->home.y = y;
+	
+	return e;
+}
+
+int vec_to_vec(Vector2D this_vec, Vector2D other_vec)
+{
+	double distance;
+	distance = sqrt((this_vec.x - other_vec.x) * (this_vec.x - other_vec.x)
+		+ (this_vec.y - other_vec.y) * (this_vec.y - other_vec.y));
+
+	//printf("(%f,%f) [%f,%f] dis %f\n", this_vec.x, this_vec.y, other_vec.x, other_vec.y, distance);
+	if (distance <= 5)
+	{
+		return 1;
+		//printf("vec collision");
+	}
+	return 0;
 }

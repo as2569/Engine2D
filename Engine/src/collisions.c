@@ -1,9 +1,11 @@
 #include <SDL.h>
+#include <math.h>
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
-#include "entity.h"
+#include "simple_logger.h"
 #include "buildings.h"
+#include "entity.h"
 #include "collisions.h"
 
 Entity* point_to_entity(int x, int y, Entity* ent)
@@ -45,3 +47,16 @@ Building* point_to_building(int x, int y, Building* bld)
 			return NULL;
 		}
 }
+
+//Vector2D vec_to_vec(Vector2D this_vec, Vector2D other_vec)
+//{
+//	float distance;
+//	distance = sqrt((this_vec.x - other_vec.x) * (this_vec.x - other_vec.x)
+//				+ (this_vec.y - other_vec.y) *(this_vec.y - other_vec.y));
+//
+//	if (distance <= 5)
+//	{
+//		slog("vec collision");
+//		return other_vec;
+//	}
+//}

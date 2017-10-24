@@ -118,21 +118,25 @@ int main(int argc, char * argv[])
 
 		if (keys[SDL_SCANCODE_B])
 		{
-			if (mouse_target->buildingType == EMERGENCY)
+			if (mouse_target)
 			{
-				resolve_emergency(mouse_target);
-				mouse_target == NULL;
-			}
-			else
-			{
-				construction_to_apartment(mouse_target);
-				mouse_target == NULL;
+				if (mouse_target->buildingType == EMERGENCY)
+				{
+					resolve_emergency(mouse_target);
+					mouse_target == NULL;
+				}
+				else
+				{
+					construction_to_apartment(mouse_target);
+					mouse_target == NULL;
+				}
 			}
 		}
 
 		update_happiness(&happiness_avg);
 		update_influence(&influence);
 		building_emergency();
+		spawn_new_residents();
 
         gf2d_graphics_clear_screen(); // clears drawing buffers
         // all drawing should happen betweem clear_screen and next_frame

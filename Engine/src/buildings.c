@@ -9,6 +9,7 @@
 extern Building buildingList[MAX_BUILDINGS];
 extern int influence;
 extern float dtime;
+extern int in_emergency;
 
 void clearBuildingList()
 {
@@ -48,10 +49,11 @@ Building* building_setup(Building* b, int type)
 		b->bounding_box.y = b->position.y;
 		b->time_to_resolve = RESOLVE_TIME;
 		b->time_to_destroy = DESTROY_TIME;
+		b->occupied = 0;
 
 		//function pointers
-		b->update = building_update;
-		b->free = building_free;
+		b->update_b = building_update;
+		b->free_b = building_free;
 
 		//color
 		if (type == 1) //Under construction
@@ -74,6 +76,10 @@ Building* building_setup(Building* b, int type)
 		{
 			b->buildingType == RESOLVING;
 		}
+		else if (type == 6)//Work
+		{
+			b->buildingType == WORK;
+		}
 		else
 		{
 			b->buildingType = EMPTY;
@@ -91,7 +97,7 @@ void update_buildings()
 		if (buildingList[i].inUse)
 		{
 			Building *b = &buildingList[i];
-			(*b->update)(b);
+			(*b->update_b)(b);
 		}
 	}
 }
@@ -165,6 +171,11 @@ void building_update(Building* b)
 		Vector4D temp_vec = { 255, 140, 0, 255 };
 		b->color = temp_vec;
 	}
+	else if (b->buildingType == WORK)
+	{
+		Vector4D temp_vec = { 0, 140, 0, 255 };
+		b->color = temp_vec;
+	}
 	else
 	{
 		Vector4D temp_vec = { 0, 0, 0, 0 };
@@ -201,6 +212,19 @@ int building_count()
 	return count;
 }
 
+int building_count_ofType(BuildingType type)
+{
+	int count = 0;
+	for (int i = 0; i < MAX_BUILDINGS; i++)
+	{
+		if (buildingList[i].inUse && buildingList[i].buildingType == type)
+		{
+			count++;
+		}
+	}
+	return count;
+}
+
 void construction_to_apartment(Building* b)
 {
 	if (b)
@@ -221,6 +245,7 @@ void resolve_emergency(Building* b)
 		if (b->buildingType == EMERGENCY)
 		{
 			b->buildingType = RESOLVING;
+			in_emergency = 0;
 			slog("resolving");
 		}
 	}

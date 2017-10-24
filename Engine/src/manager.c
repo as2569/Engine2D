@@ -18,6 +18,7 @@ extern int in_emergency;
 
 FILE *myFile;
 Building* b;
+Entity* e;
 int influence_timer = INFLUENCE_TICK;
 int event_timer = EVENT_TICK;
 int event_change = EVENT_CHANCE;
@@ -84,14 +85,14 @@ void generate_level()
 		int xPos = WINDOW_WIDTH;
 		int yPos = WINDOW_HEIGHT;
 
-		if (level_array[j] != 0)
-		{
-			b = building_new();
-			b = building_setup(b, level_array[j]);
-			yPos = yPos - (yPos / 4);
-			xPos = 10 + (j * 100);
-			building_set_position(b, xPos, yPos);
-		}
+		b = building_new();
+		b->buildingType = level_array[j];
+		b = building_setup(b, level_array[j]);
+		
+		yPos = yPos - (yPos / 4);
+		xPos = 10 + (j * 100);
+		building_set_position(b, xPos, yPos);
+
 	}
 }
 
@@ -116,5 +117,31 @@ void building_emergency()
 				}
 			}
 		}
+	}
+}
+
+void spawn_new_residents()
+{
+	if (entity_count() < building_count_ofType(APARTMENT))
+	{
+		for (int i = 0; i < MAX_BUILDINGS; i++)
+		{
+			b = &buildingList[i];
+			if (b)
+			{
+				if (b->occupied == 0 && b->buildingType == APARTMENT)
+				{
+					float temp_x = b->position.x + 25;
+					float temp_y = b->position.y + 25;
+					e = entity_new();
+					e = entity_setup_character(e);
+					e = entity_set_home(e, temp_x, temp_y);
+					e = entity_set_destination(e, temp_x, temp_y);
+					entity_set_position(e, temp_x, temp_y);
+					b->occupied = 1;
+				}
+			}
+		}
+
 	}
 }

@@ -11,6 +11,6 @@ void generate_level();
 
 void building_emergency();
 
-
+void spawn_new_residents();
 #endif // !__MANAGER_H__
 

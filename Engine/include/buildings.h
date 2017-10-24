@@ -2,7 +2,7 @@
 #define __BUILDINGS_H__
 
 #define MAX_BUILDINGS 50
-typedef enum { EMPTY, CONSTRUCTION, APARTMENT, ELEVATOR, EMERGENCY, RESOLVING} BuildingType;
+typedef enum { EMPTY, CONSTRUCTION, APARTMENT, ELEVATOR, EMERGENCY, RESOLVING, WORK} BuildingType;
 
 typedef struct Building_S
 {
@@ -14,11 +14,12 @@ typedef struct Building_S
 	Sprite* sprite;
 	SDL_Rect bounding_box;
 	Vector4D color;
+	int occupied;
 	int time_to_resolve;
 	int time_to_destroy;
 
-	void(*update)(struct Entity_S *self);
-	void(*free)(struct Entity_S *self);
+	void(*update_b)(struct Entity_S *self);
+	void(*free_b)(struct Entity_S *self);
 }Building;
 
 /**
@@ -78,6 +79,8 @@ void construction_to_apartment(Building* b);
 
 //docs
 void resolve_emergency(Building* b);
+
+int building_count_ofType(BuildingType type);
 
 #endif // !__BUILDINGS_H__
 
