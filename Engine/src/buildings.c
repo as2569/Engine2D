@@ -56,34 +56,34 @@ Building* building_setup(Building* b, int type)
 		b->free_b = building_free;
 
 		//color
-		if (type == 1) //Under construction
-		{
-			b->buildingType = CONSTRUCTION;
-		}
-		else if (type == 2) //Apartment
-		{
-			b->buildingType = APARTMENT;
-		}
-		else if (type == 3) //Elevator
-		{
-			b->buildingType = ELEVATOR;
-		}
-		else if (type == 4)//Emergency
-		{
-			b->buildingType == EMERGENCY;
-		}
-		else if (type == 5)//Emergency
-		{
-			b->buildingType == RESOLVING;
-		}
-		else if (type == 6)//Work
-		{
-			b->buildingType == WORK;
-		}
-		else
-		{
-			b->buildingType = EMPTY;
-		}
+		//if (type == 1) //Under construction
+		//{
+		//	b->buildingType = CONSTRUCTION;
+		//}
+		//else if (type == 2) //Apartment
+		//{
+		//	b->buildingType = APARTMENT;
+		//}
+		//else if (type == 3) //Elevator
+		//{
+		//	b->buildingType = ELEVATOR;
+		//}
+		//else if (type == 4)//Emergency
+		//{
+		//	b->buildingType == EMERGENCY;
+		//}
+		//else if (type == 5)//Emergency
+		//{
+		//	b->buildingType == RESOLVING;
+		//}
+		//else if (type == 6)//Work
+		//{
+		//	b->buildingType == WORK;
+		//}
+		//else
+		//{
+		//	b->buildingType = EMPTY;
+		//}
 	}
 
 	//slog("ent setup");
@@ -188,6 +188,11 @@ void building_update(Building* b)
 	Vector4D col = { 255, 0, 255, 255 };
 	gf2d_draw_rect(b->bounding_box, col);
 
+}
+
+void building_set_type(Building* b, int type)
+{
+	b->buildingType = type;
 }
 
 void building_set_position(Building* b, int x, int y)

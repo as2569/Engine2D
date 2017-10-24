@@ -86,7 +86,7 @@ void generate_level()
 		int yPos = WINDOW_HEIGHT;
 
 		b = building_new();
-		b->buildingType = level_array[j];
+		building_set_type(b, level_array[j]);
 		b = building_setup(b, level_array[j]);
 		
 		yPos = yPos - (yPos / 4);
@@ -135,7 +135,9 @@ void spawn_new_residents()
 					float temp_y = b->position.y + 25;
 					e = entity_new();
 					e = entity_setup_character(e);
+					e->state = ATHOME;
 					e = entity_set_home(e, temp_x, temp_y);
+					e = entity_set_work(e, 25, 565);
 					e = entity_set_destination(e, temp_x, temp_y);
 					entity_set_position(e, temp_x, temp_y);
 					b->occupied = 1;

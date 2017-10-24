@@ -15,6 +15,7 @@
 
 #define RESOLVE_TIME 2000;
 #define DESTROY_TIME 4000;
+#define STATE_TIME 600;
 
 #endif
 

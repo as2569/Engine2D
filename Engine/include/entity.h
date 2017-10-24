@@ -2,7 +2,7 @@
 #define __ENTITY_H__
 
 #define MAX_ENTITIES 50
-typedef enum {atHome, atWork, inTransit} EntityState;
+typedef enum {ATHOME, ATWORK, GOINGWORK, GOINGHOME} EntityState;
 
 typedef struct Entity_S
 {
@@ -16,7 +16,9 @@ typedef struct Entity_S
 	Vector2D home;
 	Vector2D work;
 	Vector2D destination;
+	EntityState state;
 
+	int state_time;
 	int internal_time;
 	int happiness;
 
@@ -87,4 +89,7 @@ int vec_to_vec(Vector2D this_vec, Vector2D other_vec);
 
 Entity* entity_set_destination(Entity* e, float x, float y);
 
+Entity* entity_set_work(Entity* e, float x, float y);
+
+void set_state(Entity* e);
 #endif // !__ENTITY_H__

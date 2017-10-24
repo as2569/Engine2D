@@ -82,5 +82,7 @@ void resolve_emergency(Building* b);
 
 int building_count_ofType(BuildingType type);
 
+void building_set_type(Building* b, int type);
+
 #endif // !__BUILDINGS_H__
 

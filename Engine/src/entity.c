@@ -51,6 +51,7 @@ Entity* entity_setup_character(Entity* e)
 		e->velocity.y = 0;
 		e->happiness = 25;
 		e->internal_time = 500;
+		e->state_time = STATE_TIME;
 
 		//function pointers
 		e->update_e = entity_update;
@@ -89,21 +90,24 @@ void entity_update(Entity* e)
 
 	//update time and happiness
 	e->internal_time -= dtime;
+	e->state_time -= dtime;
 	if (e->internal_time <= 0)
 	{
 		e->internal_time = 500;
 		e->happiness -= 1;
 	}
 
-	vec_to_vec(e->position, e->destination);
+	set_state(e);
+	printf("\nstate %i, time %i", e->state, e->state_time);
+	//vec_to_vec(e->position, e->destination);
+
 
 	vector2d_add(e->position, e->position, e->velocity);
 	e->bounding_box.h = e->size.x;
 	e->bounding_box.w = e->size.y / 2;
 	e->bounding_box.x = e->position.x + e->bounding_box.w / 2;
 	e->bounding_box.y = e->position.y;
-	
-	
+		
 	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
 
 	//bounding box DEBUG
@@ -158,17 +162,73 @@ Entity* entity_set_home(Entity* e, float x, float y)
 	return e;
 }
 
+Entity* entity_set_work(Entity* e, float x, float y)
+{
+	e->work.x = x;
+	e->work.y = y;
+
+	return e;
+}
+
 int vec_to_vec(Vector2D this_vec, Vector2D other_vec)
 {
 	double distance;
 	distance = sqrt((this_vec.x - other_vec.x) * (this_vec.x - other_vec.x)
 		+ (this_vec.y - other_vec.y) * (this_vec.y - other_vec.y));
 
-	//printf("(%f,%f) [%f,%f] dis %f\n", this_vec.x, this_vec.y, other_vec.x, other_vec.y, distance);
-	if (distance <= 5)
+	printf("(%f,%f) [%f,%f] dis %f\n", this_vec.x, this_vec.y, other_vec.x, other_vec.y, distance);
+	if (distance <= 20)
 	{
 		return 1;
-		//printf("vec collision");
+		printf("vec collision");
 	}
 	return 0;
+}
+
+void set_state(Entity* e)
+{
+	//if going to work set vel.x to -1
+	if(e->state == GOINGWORK)
+	{
+		if (vec_to_vec(e->position, e->destination) == 1)
+		{
+			e->state = ATWORK;
+			e->state_time = STATE_TIME;
+			e->velocity.x = 0;
+		}
+		else
+		{
+			e->velocity.x = -1;
+		}
+	}
+
+	//if going home set vel.x to 1
+	if (e->state == GOINGHOME)
+	{
+		if (vec_to_vec(e->position, e->destination) == 1)
+		{
+			e->state = ATHOME;
+			e->state_time = STATE_TIME;
+			e->velocity.x = 0;
+		}
+		else
+		{
+			e->velocity.x = 1;
+		}
+	}
+
+	//if at home and time is out switch destination to work
+	if (e->state == ATHOME && e->state_time <= 0)
+	{
+		e->state_time = STATE_TIME;
+		e->destination = e->work;
+		e->state = GOINGWORK;
+	}
+	
+	if (e->state == ATWORK && e->state_time <= 0)
+	{
+		e->state_time = STATE_TIME;
+		e->destination = e->home;
+		e->state = GOINGHOME;
+	}
 }
