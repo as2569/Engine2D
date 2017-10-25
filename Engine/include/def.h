@@ -11,7 +11,7 @@
 
 #define INFLUENCE_INITIAL 100
 
-#define EVENT_CHANCE 0.25f
+#define EVENT_CHANCE 0.10f
 
 #define RESOLVE_TIME 2000;
 #define DESTROY_TIME 4000;

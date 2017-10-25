@@ -1,4 +1,8 @@
-﻿  manager.c
+﻿  user_interface.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(59): warning C4113: 'void (__cdecl *)(ui_element *,int)' differs in parameter lists from 'void (__cdecl *)(ui_element_S *)'
+  time.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\time.c(11): warning C4013: 'SDL_GetTicks' undefined; assuming extern returning int
+  manager.c
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(48): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -9,5 +13,48 @@ c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(102): warning C
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(142): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(134): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(135): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  gf2d_graphics.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(127): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(132): warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(void)'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(203): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(220): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(221): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(222): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c(223): warning C4244: 'function': conversion from 'double' to 'Uint8', possible loss of data
+  game.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(126): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(131): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(159): warning C4020: 'function through pointer': too many actual parameters
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(160): warning C4020: 'function through pointer': too many actual parameters
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(41): warning C4101: 'this_event': unreferenced local variable
+  entity.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(47): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(48): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(58): warning C4028: formal parameter 1 different from declaration
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(92): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(93): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(106): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(107): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(108): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(109): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\entity.c(115): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
+  buildings.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(47): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(48): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(55): warning C4028: formal parameter 1 different from declaration
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(56): warning C4028: formal parameter 1 different from declaration
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(100): warning C4133: 'function': incompatible types - from 'Building *' to 'Entity_S *'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(120): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(121): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(122): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(123): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(128): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(140): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\buildings.c(189): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
+  Generating Code...
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)
