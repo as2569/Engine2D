@@ -5,9 +5,9 @@
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
-#include "entity.h"
 #include "manager.h"
 #include "buildings.h"
+#include "entity.h"
 #include "collisions.h"
 #include "def.h"
 #include "sound.h"
@@ -82,7 +82,6 @@ int main(int argc, char * argv[])
     /*main game loop*/
     while(!done)
     {
-		
 		dtime = delta_time();
 
         SDL_PumpEvents();   // update SDL's internal event structures

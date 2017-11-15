@@ -48,6 +48,36 @@ Building* point_to_building(int x, int y, Building* bld)
 		}
 }
 
+Building* entity_within_building(Entity* ent, Building* bld)
+{
+	if ((ent->bounding_box.x >= bld->bounding_box.x)
+		&& (ent->bounding_box.x <= (ent->bounding_box.x + ent->bounding_box.w))
+		&& (ent->bounding_box.y >= ent->bounding_box.y)
+		&& (ent->bounding_box.y <= (ent->bounding_box.y + ent->bounding_box.h))
+		&&
+		((ent->bounding_box.x + ent->bounding_box.w >= bld->bounding_box.x)
+		&& (ent->bounding_box.x + ent->bounding_box.w <= (ent->bounding_box.x + ent->bounding_box.w))
+		&& (ent->bounding_box.y >= ent->bounding_box.y)
+		&& (ent->bounding_box.y <= (ent->bounding_box.y + ent->bounding_box.h)))
+		&&
+		((ent->bounding_box.x >= bld->bounding_box.x)
+		&& (ent->bounding_box.x <= (ent->bounding_box.x + ent->bounding_box.w))
+		&& (ent->bounding_box.y + ent->bounding_box.h >= ent->bounding_box.y)
+		&& (ent->bounding_box.y + ent->bounding_box.h <= (ent->bounding_box.y + ent->bounding_box.h)))
+		&&
+		((ent->bounding_box.x + ent->bounding_box.w >= bld->bounding_box.x)
+		&& (ent->bounding_box.x + ent->bounding_box.w <= (ent->bounding_box.x + ent->bounding_box.w))
+		&& (ent->bounding_box.y + ent->bounding_box.h >= ent->bounding_box.y)
+		&& (ent->bounding_box.y + ent->bounding_box.h <= (ent->bounding_box.y + ent->bounding_box.h))))
+	{
+		return bld;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
 //Vector2D vec_to_vec(Vector2D this_vec, Vector2D other_vec)
 //{
 //	float distance;

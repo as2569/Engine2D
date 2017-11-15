@@ -19,6 +19,7 @@ extern int in_emergency;
 FILE *myFile;
 Building* b;
 Entity* e;
+Building* workBuilding;
 int influence_timer = INFLUENCE_TICK;
 int event_timer = EVENT_TICK;
 int event_change = EVENT_CHANCE;
@@ -92,7 +93,14 @@ void generate_level()
 		yPos = yPos - (yPos / 4);
 		xPos = 10 + (j * 100);
 		building_set_position(b, xPos, yPos);
-
+	}
+	for (int k = 0; k <= MAX_BUILDINGS; k++)
+	{
+		b = &buildingList[k];
+		if (b->buildingType == WORK)
+		{
+			workBuilding = b;
+		}
 	}
 }
 
@@ -136,9 +144,9 @@ void spawn_new_residents()
 					e = entity_new();
 					e = entity_setup_character(e);
 					e->state = ATHOME;
-					e = entity_set_home(e, temp_x, temp_y);
-					e = entity_set_work(e, 25, 565);
-					e = entity_set_destination(e, temp_x, temp_y);
+					e = entity_set_home(e, b);
+					e = entity_set_work(e, workBuilding);
+					e = entity_set_destination(e, b);
 					entity_set_position(e, temp_x, temp_y);
 					b->occupied = 1;
 				}

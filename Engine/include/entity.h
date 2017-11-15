@@ -13,10 +13,11 @@ typedef struct Entity_S
 	Vector2D velocity;
 	Sprite* sprite;
 	SDL_Rect bounding_box;
-	Vector2D home;
-	Vector2D work;
-	Vector2D destination;
+	Building* home;
+	Building* work;
+	Building* destination;
 	EntityState state;
+	Building* currentBuilding;
 
 	int state_time;
 	int internal_time;
@@ -83,13 +84,13 @@ void entity_set_velocity(Entity* e, float x, float y);
 int entity_count();
 
 //docs
-Entity* entity_set_home(Entity* e, float x, float y);
+Entity* entity_set_home(Entity* e, Building* b);
 
 int vec_to_vec(Vector2D this_vec, Vector2D other_vec);
 
-Entity* entity_set_destination(Entity* e, float x, float y);
+Entity* entity_set_destination(Entity* e, Building* b);
 
-Entity* entity_set_work(Entity* e, float x, float y);
+Entity* entity_set_work(Entity* e, Building* b);
 
 void set_state(Entity* e);
 #endif // !__ENTITY_H__

@@ -6,10 +6,13 @@
 #include "simple_logger.h"
 #include "buildings.h"
 #include "entity.h"
+#include "collisions.h"
 #include "def.h"
 
 extern Entity entList[MAX_ENTITIES];
+extern Building buildingList[MAX_BUILDINGS];
 extern float dtime;
+Building* tempBld;
 
 void clearEntList()
 {
@@ -52,6 +55,7 @@ Entity* entity_setup_character(Entity* e)
 		e->happiness = 25;
 		e->internal_time = 500;
 		e->state_time = STATE_TIME;
+		e->currentBuilding = NULL;
 
 		//function pointers
 		e->update_e = entity_update;
@@ -81,13 +85,6 @@ void entity_free(Entity** e)
 
 void entity_update(Entity* e)
 {
-	////if entity is out of screen bounds, free it
-	//if (e->position.x > 1200 || e->position.x < 0 || e->position.y > 720 || e->position.y < 0)
-	//{
-	//	entity_free(&e);
-	//	return;
-	//}
-
 	//update time and happiness
 	e->internal_time -= dtime;
 	e->state_time -= dtime;
@@ -98,9 +95,6 @@ void entity_update(Entity* e)
 	}
 
 	set_state(e);
-	printf("\nstate %i, time %i", e->state, e->state_time);
-	//vec_to_vec(e->position, e->destination);
-
 
 	vector2d_add(e->position, e->position, e->velocity);
 	e->bounding_box.h = e->size.x;
@@ -113,6 +107,7 @@ void entity_update(Entity* e)
 	//bounding box DEBUG
 	Vector4D col = { 255, 0, 255, 255 };
 	gf2d_draw_rect(e->bounding_box, col);
+	//slog("home %p work %p", e->home, e->work);
 }
 
 void entity_set_position(Entity* e, int x, int y)
@@ -146,27 +141,21 @@ int entity_count()
 	return count;
 }
 
-Entity* entity_set_destination(Entity* e, float x, float y)
+Entity* entity_set_destination(Entity* e, Building* b)
 {
-	e->destination.x = x;
-	e->destination.y = y;
-
+	e->destination = b;
 	return e;
 }
 
-Entity* entity_set_home(Entity* e, float x, float y)
+Entity* entity_set_home(Entity* e, Building* b)
 {
-	e->home.x = x;
-	e->home.y = y;
-	
+	e->home = b;
 	return e;
 }
 
-Entity* entity_set_work(Entity* e, float x, float y)
+Entity* entity_set_work(Entity* e, Building* b)
 {
-	e->work.x = x;
-	e->work.y = y;
-
+	e->work = b;
 	return e;
 }
 
@@ -187,11 +176,12 @@ int vec_to_vec(Vector2D this_vec, Vector2D other_vec)
 
 void set_state(Entity* e)
 {
-	//if going to work set vel.x to -1
 	if(e->state == GOINGWORK)
 	{
-		if (vec_to_vec(e->position, e->destination) == 1)
+		tempBld = entity_within_building(e, e->work);
+		if(tempBld == e->work)
 		{
+			slog("at work");
 			e->state = ATWORK;
 			e->state_time = STATE_TIME;
 			e->velocity.x = 0;
@@ -202,10 +192,12 @@ void set_state(Entity* e)
 		}
 	}
 
-	//if going home set vel.x to 1
+	//if going home set vel.x to 0
 	if (e->state == GOINGHOME)
 	{
-		if (vec_to_vec(e->position, e->destination) == 1)
+		//if (vec_to_vec(e->position, ) == 1)
+		tempBld = entity_within_building(e, e->home);
+		if(tempBld == e->home)
 		{
 			e->state = ATHOME;
 			e->state_time = STATE_TIME;
@@ -220,6 +212,7 @@ void set_state(Entity* e)
 	//if at home and time is out switch destination to work
 	if (e->state == ATHOME && e->state_time <= 0)
 	{
+		slog("ATHOME switching GOINGWORK");
 		e->state_time = STATE_TIME;
 		e->destination = e->work;
 		e->state = GOINGWORK;
