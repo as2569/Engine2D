@@ -11,15 +11,17 @@
 
 extern Entity entList[MAX_ENTITIES];
 extern Building buildingList[MAX_BUILDINGS];
-extern level_array[MAX_LEVEL_WIDTH];
+extern level_array[MAX_LEVEL_HEIGHT][MAX_LEVEL_WIDTH];
 extern int happiness_avg;
 extern float dtime;
 extern int in_emergency;
 
 FILE *myFile;
+char* line[25];
 Building* b;
 Entity* e;
 Building* workBuilding;
+int i = 0;
 int influence_timer = INFLUENCE_TICK;
 int event_timer = EVENT_TICK;
 int event_change = EVENT_CHANCE;
@@ -62,6 +64,29 @@ void update_influence(int* influence)
 	}
 }
 
+//void read_level_file()
+//{
+//	myFile = fopen("resources/level.txt", "r");
+//
+//	if (myFile == NULL)
+//	{
+//		slog("Error Reading File");
+//	}
+//	for (int j = 0; j < MAX_LEVEL_HEIGHT; j++)
+//	{
+//		if(fgets(line, MAX_LEVEL_WIDTH, myFile) != NULL)
+//		{
+//			for (int i = 0; i <= MAX_LEVEL_WIDTH; i++)
+//			{
+//				sscanf(line, "%d%n", &level_array[j][i]);
+//				//printf("%s -> %d\n", line, i);
+//			}
+//		}
+//	}
+//	fclose(myFile);
+//}
+
+//load one layer only
 void read_level_file()
 {
 	myFile = fopen("resources/level.txt", "r");
@@ -73,7 +98,7 @@ void read_level_file()
 
 	for (int i = 0; i <= MAX_LEVEL_WIDTH; i++)
 	{
-		fscanf(myFile, "%d,", &level_array[i]);
+		fscanf(myFile, "%d,", &level_array[0][i]);
 	}
 
 	fclose(myFile);
@@ -87,8 +112,8 @@ void generate_level()
 		int yPos = WINDOW_HEIGHT;
 
 		b = building_new();
-		building_set_type(b, level_array[j]);
-		b = building_setup(b, level_array[j]);
+		building_set_type(b, level_array[0][j]);
+		b = building_setup(b, level_array[0][j]);
 		
 		yPos = yPos - (yPos / 4);
 		xPos = 10 + (j * 100);

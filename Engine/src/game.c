@@ -15,8 +15,9 @@
 
 Entity entList[MAX_ENTITIES];
 Building buildingList[MAX_BUILDINGS];
+ui_element* uiList[MAX_UI_ELEMENTS];
 
-int level_array[MAX_LEVEL_WIDTH];
+int level_array[MAX_LEVEL_HEIGHT][MAX_LEVEL_WIDTH];
 int influence = 100;
 int happiness_avg = 0;
 float dtime = 0;
@@ -26,14 +27,12 @@ Mix_Music* music;
 
 int main(int argc, char * argv[])
 {
-	//ui element
-	ui_element *influence_ui;
-	ui_element *happiness_ui;
 	
 	//my variables
 	Entity* e;
 	Building* b;
 	Building* mouse_target = NULL;
+	ui_element* ui = NULL;
 
     /*variable declarations*/
     int done = 0;
@@ -70,9 +69,7 @@ int main(int argc, char * argv[])
 
 	clearEntList();
 	clearBuildingList();
-	
-	happiness_ui = new_ui_element(0);
-	influence_ui = new_ui_element(1);
+	init_ui();
 
 	load_song();
 	read_level_file();
@@ -93,12 +90,23 @@ int main(int argc, char * argv[])
 
 		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
 		{
-			for (int i = 0; i < MAX_BUILDINGS; i++)
+			for (int i = 0; i < MAX_BUILDINGS; i++)//check if clicked on buildings
 			{
 				b = point_to_building(mx, my, &buildingList[i]);
 				if (b)
 				{
 					mouse_target = b;
+				}
+			}
+			for (int j = 0; j < MAX_UI_ELEMENTS; j++)//check if clicked on ui
+			{
+				ui = point_to_ui(mx, my, uiList[j]);
+				if(ui)
+				{
+					if (ui->isClickable == 1 && ui->isActive == 1)
+					{
+						ui->click(ui);
+					}
 				}
 			}
 		}
@@ -155,8 +163,7 @@ int main(int argc, char * argv[])
 		update_entities();
 
         //UI elements last
-		happiness_ui->update(happiness_ui, happiness_avg);
-		influence_ui->update(influence_ui, influence);
+		update_ui();
 
 		gf2d_sprite_draw(
 			mouse,

@@ -1,13 +1,18 @@
 #ifndef __USER_INTERFACE_H__
 #define __USER_INTERFACE_H__
 
+#define MAX_UI_ELEMENTS 3
+
 typedef struct ui_element_S
 {
-	enum{influence_type, happiness_type} ui_type;
+	enum{influence_type, happiness_type, menu, buy, resolve} ui_type;
+	int isClickable;
+	int isActive;
 	int value;
 	int fd_value;
 	int sd_value;
 	int td_value;
+	SDL_Rect bounding_box;
 
 	Sprite* icon;
 	Sprite* fd_sprite;
@@ -21,6 +26,7 @@ typedef struct ui_element_S
 	Vector2D icon_scale;
 	Vector2D digit_scale;
 
+	void(*click)(struct ui_element_s *self);
 	void(*update)(struct ui_element_S *self);
 	void(*free)(struct ui_element_S *self);
 
@@ -31,6 +37,14 @@ ui_element* new_ui_element(int type);
 void clear_ui_element(ui_element*);
 
 void update_ui_element(ui_element *ui, int num);
+
+void update_clickable_ui(ui_element *ui);
+
+void clicked_on_menu();
+
+void update_ui();
+
+void init_ui();
 
 #endif
 

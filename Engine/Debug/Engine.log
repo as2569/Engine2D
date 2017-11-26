@@ -1,2 +1,13 @@
-﻿  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
+﻿  user_interface.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(43): warning C4113: 'void (__cdecl *)(ui_element *,int)' differs in parameter lists from 'void (__cdecl *)(ui_element_S *)'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(66): warning C4113: 'void (__cdecl *)(ui_element *,int)' differs in parameter lists from 'void (__cdecl *)(ui_element_S *)'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(76): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(77): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(78): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(79): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(81): warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(ui_element_s *)'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(120): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(136): warning C4020: 'function through pointer': too many actual parameters
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(137): warning C4020: 'function through pointer': too many actual parameters
+  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

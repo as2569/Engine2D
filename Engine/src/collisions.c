@@ -5,6 +5,7 @@
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
 #include "buildings.h"
+#include "user_interface.h"
 #include "entity.h"
 #include "collisions.h"
 
@@ -71,6 +72,21 @@ Building* entity_within_building(Entity* ent, Building* bld)
 		&& (ent->bounding_box.y + ent->bounding_box.h <= (bld->bounding_box.y + bld->bounding_box.h))))
 	{
 		return bld;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
+ui_element* point_to_ui(int x, int y, ui_element* ui)
+{
+	if ((x >= ui->bounding_box.x)
+		&& (x <= (ui->bounding_box.x + ui->bounding_box.w))
+		&& (y >= ui->bounding_box.y)
+		&& (y <= (ui->bounding_box.y + ui->bounding_box.h)))
+	{
+		return ui;
 	}
 	else
 	{
