@@ -143,6 +143,7 @@ void building_emergency()
 				b = &buildingList[i];
 				if (b->buildingType == APARTMENT)
 				{
+					slog("building emergency");
 					b->buildingType = EMERGENCY;
 					event_timer = EVENT_TICK;
 					in_emergency = 1;

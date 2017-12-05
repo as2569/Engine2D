@@ -26,8 +26,7 @@ int in_emergency = 0;
 Mix_Music* music; 
 
 int main(int argc, char * argv[])
-{
-	
+{	
 	//my variables
 	Entity* e;
 	Building* b;
@@ -35,7 +34,7 @@ int main(int argc, char * argv[])
 	ui_element* ui = NULL;
 
     /*variable declarations*/
-    int done = 0;
+    int quit = 0;
     const Uint8 * keys;
 	SDL_Event this_event;
     Sprite *sprite;
@@ -77,111 +76,131 @@ int main(int argc, char * argv[])
 	play_song();
 
     /*main game loop*/
-    while(!done)
-    {
-		dtime = delta_time();
-
-        SDL_PumpEvents();   // update SDL's internal event structures
-        keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
-
-        /*update things here*/
-        mf+=0.1f;
-        if(mf >= 16.0)mf = 0;
-
-		if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	while (!quit)
+	{
+		if (SDL_PollEvent(&this_event))
 		{
-			for (int i = 0; i < MAX_BUILDINGS; i++)//check if clicked on buildings
+			if (this_event.type == SDL_QUIT)
 			{
-				b = point_to_building(mx, my, &buildingList[i]);
-				if (b)
-				{
-					mouse_target = b;
-				}
+				quit = 1;
 			}
-			for (int j = 0; j < MAX_UI_ELEMENTS; j++)//check if clicked on ui
+			//SDL_PumpEvents();   // update SDL's internal event structures
+			//keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
+
+			/*update things here*/
+			dtime = delta_time();
+			//mf += 0.1f;
+			//if (mf >= 16.0)mf = 0;
+
+			//if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
+
+			SDL_GetMouseState(&mx, &my);
+
+			if (this_event.type == SDL_MOUSEBUTTONUP)
 			{
-				ui = point_to_ui(mx, my, uiList[j]);
-				if(ui)
+				for (int i = 0; i < MAX_BUILDINGS; i++) //check if clicked on buildings
 				{
-					if (ui->isClickable == 1 && ui->isActive == 1)
+					b = point_to_building(mx, my, &buildingList[i]);
+					slog("b %p", b);
+					if (b != NULL)
 					{
-						ui->click(ui);
+						slog("target before %p", mouse_target);
+						
+						mouse_target = b;
+						slog("target after %p", mouse_target);
+					}
+					else
+					{
+						slog("resetting");
+						mouse_target = NULL;
+					}
+				}
+				slog("mouse_target outside %p", mouse_target);
+
+				for (int j = 0; j < MAX_UI_ELEMENTS; j++) //check if clicked on ui
+				{
+					ui = point_to_ui(mx, my, uiList[j]);
+					if (ui)
+					{
+						if (ui->isClickable == 1 && ui->isActive == 1)
+						{
+							ui->click(ui, mouse_target);
+						}
 					}
 				}
 			}
 		}
+			//if (keys[SDL_SCANCODE_C])
+			//{
+			//	mouse_target = NULL;
+			//	//slog("\nmouse_target set to NULL");
+			//}
+			//
+			//if (keys[SDL_SCANCODE_E])
+			//{
+			//	mouse_target->buildingType = EMERGENCY;
+			//	in_emergency = 1;
+			//}
 
-		if (keys[SDL_SCANCODE_C])
-		{
-			mouse_target = NULL;
-			//slog("\nmouse_target set to NULL");
-		}
-		
-		if (keys[SDL_SCANCODE_E])
-		{
-			mouse_target->buildingType = EMERGENCY;
-			in_emergency = 1;
-		}
+			//if (keys[SDL_SCANCODE_B])
+			//{
+			//	if (mouse_target)
+			//	{
+			//		if (mouse_target->buildingType == EMERGENCY)
+			//		{
+			//			resolve_emergency(mouse_target);
+			//			mouse_target == NULL;
+			//		}
+			//		else
+			//		{
+			//			construction_to_apartment(mouse_target);
+			//			mouse_target == NULL;
+			//		}
+			//	}
+			//}
 
-		if (keys[SDL_SCANCODE_B])
-		{
-			if (mouse_target)
+			update_happiness(&happiness_avg);
+			update_influence(&influence);
+			building_emergency();
+			spawn_new_residents();
+
+			gf2d_graphics_clear_screen(); // clears drawing buffers
+			// all drawing should happen betweem clear_screen and next_frame
+
+			//create entity on space
+			/*if(keys[SDL_SCANCODE_SPACE])
 			{
-				if (mouse_target->buildingType == EMERGENCY)
-				{
-					resolve_emergency(mouse_target);
-					mouse_target == NULL;
-				}
-				else
-				{
-					construction_to_apartment(mouse_target);
-					mouse_target == NULL;
-				}
-			}
+				e = entity_new();
+				e = entity_setup_character(e);
+				entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+			}*/
+
+			//backgrounds drawn first
+			gf2d_sprite_draw_image(sprite, vector2d(0, 0));
+
+			update_buildings();
+			update_entities();
+
+			//UI elements last
+			update_ui();
+
+			gf2d_sprite_draw(
+				mouse,
+				vector2d(mx, my),
+				NULL,
+				NULL,
+				NULL,
+				NULL,
+				&mouseColor,
+				5);
+
+			gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
+
+			//if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
+			//printf("\n Rendering at %f FPS",gf2d_graphics_get_frames_per_second()); // print FPS to console
+			
 		}
-
-		update_happiness(&happiness_avg);
-		update_influence(&influence);
-		building_emergency();
-		spawn_new_residents();
-
-        gf2d_graphics_clear_screen(); // clears drawing buffers
-        // all drawing should happen betweem clear_screen and next_frame
-		
-		//create entity on space
-		if(keys[SDL_SCANCODE_SPACE])
-		{
-			e = entity_new();
-			e = entity_setup_character(e);
-			entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-		}
-		 
-        //backgrounds drawn first
-        gf2d_sprite_draw_image(sprite,vector2d(0,0));
-	
-		update_buildings();
-		update_entities();
-
-        //UI elements last
-		update_ui();
-
-		gf2d_sprite_draw(
-			mouse,
-			vector2d(mx, my),
-			NULL,
-			NULL,
-			NULL,
-			NULL,
-			&mouseColor,
-			5);
-
-        gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
-        
-        if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
-        //printf("\n Rendering at %f FPS",gf2d_graphics_get_frames_per_second()); // print FPS to console
-		
-    }
-    slog("---==== END ====---");
-    return 0;
+	//}
+	slog("---==== END ====---");
 }
 /*eol@eof*/

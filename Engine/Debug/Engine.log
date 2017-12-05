@@ -1,13 +1,10 @@
-﻿  user_interface.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(43): warning C4113: 'void (__cdecl *)(ui_element *,int)' differs in parameter lists from 'void (__cdecl *)(ui_element_S *)'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(66): warning C4113: 'void (__cdecl *)(ui_element *,int)' differs in parameter lists from 'void (__cdecl *)(ui_element_S *)'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(76): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(77): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(78): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(79): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(81): warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(ui_element_s *)'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(120): warning C4013: 'gf2d_draw_rect' undefined; assuming extern returning int
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(136): warning C4020: 'function through pointer': too many actual parameters
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c(137): warning C4020: 'function through pointer': too many actual parameters
+﻿  game.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(122): warning C4013: 'point_to_ui' undefined; assuming extern returning int
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(122): warning C4047: '=': 'ui_element *' differs in levels of indirection from 'int'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(127): warning C4133: 'function': incompatible types - from 'ui_element *' to 'ui_element_s *'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(127): warning C4020: 'function through pointer': too many actual parameters
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(31): warning C4101: 'e': unreferenced local variable
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(38): warning C4101: 'keys': unreferenced local variable
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(205): warning C4716: 'SDL_main': must return a value
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

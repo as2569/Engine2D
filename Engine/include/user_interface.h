@@ -1,11 +1,11 @@
 #ifndef __USER_INTERFACE_H__
 #define __USER_INTERFACE_H__
 
-#define MAX_UI_ELEMENTS 3
+#define MAX_UI_ELEMENTS 4
 
 typedef struct ui_element_S
 {
-	enum{influence_type, happiness_type, menu, buy, resolve} ui_type;
+	enum{influence_type, happiness_type, menu, fire, buy, resolve} ui_type;
 	int isClickable;
 	int isActive;
 	int value;
@@ -45,6 +45,8 @@ void clicked_on_menu();
 void update_ui();
 
 void init_ui();
+
+void resolve_ui(Building* target);
 
 #endif
 

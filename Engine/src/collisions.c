@@ -41,6 +41,7 @@ Building* point_to_building(int x, int y, Building* bld)
 			&& (y >= bld->bounding_box.y)
 			&& (y <= (bld->bounding_box.y + bld->bounding_box.h)))
 		{
+			slog("Returning %p", bld);
 			return bld;
 		}
 		else

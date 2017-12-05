@@ -245,8 +245,10 @@ void construction_to_apartment(Building* b)
 
 void resolve_emergency(Building* b)
 {
+	slog("resolve1");
 	if (b)
 	{
+		slog("resolve2");
 		if (b->buildingType == EMERGENCY)
 		{
 			b->buildingType = RESOLVING;
