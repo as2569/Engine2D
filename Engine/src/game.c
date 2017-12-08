@@ -35,9 +35,11 @@ int main(int argc, char * argv[])
 
     /*variable declarations*/
     int quit = 0;
+	int in_main = 1;
     const Uint8 * keys;
 	SDL_Event this_event;
-    Sprite *sprite;
+    Sprite* sprite;
+	Sprite* titleScreen;
 
 	//mouse variables
     int mx,my;
@@ -63,7 +65,7 @@ int main(int argc, char * argv[])
     
     /*demo setup*/
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
-	//sprite = gf2d_sprite_load_image("images/falowiec.png");
+	titleScreen = gf2d_sprite_load_image("images/falowiec.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
 
 	clearEntList();
@@ -78,21 +80,16 @@ int main(int argc, char * argv[])
     /*main game loop*/
 	while (!quit)
 	{
+		//slog("in main %i", in_main);
 		if (SDL_PollEvent(&this_event))
 		{
 			if (this_event.type == SDL_QUIT)
 			{
 				quit = 1;
 			}
-			//SDL_PumpEvents();   // update SDL's internal event structures
-			//keys = SDL_GetKeyboardState(NULL); // get the keyboard state for this frame
 
 			/*update things here*/
 			dtime = delta_time();
-			//mf += 0.1f;
-			//if (mf >= 16.0)mf = 0;
-
-			//if(SDL_GetMouseState(&mx, &my) & SDL_BUTTON(SDL_BUTTON_LEFT))
 
 			SDL_GetMouseState(&mx, &my);
 
@@ -118,91 +115,60 @@ int main(int argc, char * argv[])
 					{
 						if (ui->isClickable == 1 && ui->isActive == 1)
 						{
-							if (ui->ui_type == 3)
+							if (ui->ui_type == 0)
 							{
-								slog("here");
+								slog("passing %i ", in_main);
+								ui->click(ui, &in_main);
+								slog("current %i ", in_main);
+							}
+							else if (ui->ui_type == 4)
 								ui->click(ui, mouse_target);
-							}
 							else
-							{
 								ui->click(ui);
-							}
 						}
 					}
 				}
 			}
 		}
-			//if (keys[SDL_SCANCODE_C])
-			//{
-			//	mouse_target = NULL;
-			//	//slog("\nmouse_target set to NULL");
-			//}
-			//
-			//if (keys[SDL_SCANCODE_E])
-			//{
-			//	mouse_target->buildingType = EMERGENCY;
-			//	in_emergency = 1;
-			//}
 
-			//if (keys[SDL_SCANCODE_B])
-			//{
-			//	if (mouse_target)
-			//	{
-			//		if (mouse_target->buildingType == EMERGENCY)
-			//		{
-			//			resolve_emergency(mouse_target);
-			//			mouse_target == NULL;
-			//		}
-			//		else
-			//		{
-			//			construction_to_apartment(mouse_target);
-			//			mouse_target == NULL;
-			//		}
-			//	}
-			//}
-
+		if (in_main == 0)
+		{
 			update_happiness(&happiness_avg);
 			update_influence(&influence);
 			building_emergency();
 			spawn_new_residents();
-
-			gf2d_graphics_clear_screen(); // clears drawing buffers
-			// all drawing should happen betweem clear_screen and next_frame
-
-			//create entity on space
-			/*if(keys[SDL_SCANCODE_SPACE])
-			{
-				e = entity_new();
-				e = entity_setup_character(e);
-				entity_set_position(e, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-			}*/
-
-			//backgrounds drawn first
-			gf2d_sprite_draw_image(sprite, vector2d(0, 0));
-
-			update_buildings();
-			update_entities();
-
-			//UI elements last
-			update_ui();
-
-			gf2d_sprite_draw(
-				mouse,
-				vector2d(mx, my),
-				NULL,
-				NULL,
-				NULL,
-				NULL,
-				&mouseColor,
-				5);
-
-			gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
-
-			//if (keys[SDL_SCANCODE_ESCAPE])done = 1; // exit condition
-			//printf("\n Rendering at %f FPS",gf2d_graphics_get_frames_per_second()); // print FPS to console
-			
 		}
-	//}
+
+		gf2d_graphics_clear_screen(); // clears drawing buffers
+		// all drawing should happen betweem clear_screen and next_frame
+	
+		if (in_main)
+		{
+			gf2d_sprite_draw_image(titleScreen, vector2d(0, 0)); //backgrounds drawn first
+		}
+		else
+		{
+			gf2d_sprite_draw_image(sprite, vector2d(0, 0)); //backgrounds drawn first
+			update_buildings();
+			update_entities();			
+		}
+
+		update_ui(); //UI elements last
+
+		gf2d_sprite_draw(
+			mouse,
+			vector2d(mx, my),
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			&mouseColor,
+			5);
+
+		gf2d_grahics_next_frame();// render current draw frame and skip to the next frame
+
+	}
+
 	slog("---==== END ====---");
 }
 /*eol@eof*/

@@ -238,22 +238,18 @@ void construction_to_apartment(Building* b)
 		{
 			b->buildingType = APARTMENT;
 			influence = influence - 100;
-			slog("changed to apartment");
 		}
 	}
 }
 
 void resolve_emergency(Building* b)
 {
-	slog("resolve1");
 	if (b)
 	{
-		slog("resolve2");
 		if (b->buildingType == EMERGENCY)
 		{
 			b->buildingType = RESOLVING;
 			in_emergency = 0;
-			slog("resolving");
 		}
 	}
 }
