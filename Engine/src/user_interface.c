@@ -138,7 +138,7 @@ void clicked_on_menu()
 	}
 }
 
-void resolve_ui(Building* target)
+void resolve_ui(ui_element* ui, Building* target)
 {
 	slog("resolve1");
 	if(target != NULL)

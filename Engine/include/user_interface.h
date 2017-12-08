@@ -46,7 +46,7 @@ void update_ui();
 
 void init_ui();
 
-void resolve_ui(Building* target);
+void resolve_ui(ui_element* ui, Building* target);
 
 #endif
 

@@ -1,10 +1,2 @@
-﻿  game.c
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(122): warning C4013: 'point_to_ui' undefined; assuming extern returning int
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(122): warning C4047: '=': 'ui_element *' differs in levels of indirection from 'int'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(127): warning C4133: 'function': incompatible types - from 'ui_element *' to 'ui_element_s *'
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(127): warning C4020: 'function through pointer': too many actual parameters
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(31): warning C4101: 'e': unreferenced local variable
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(38): warning C4101: 'keys': unreferenced local variable
-c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c(205): warning C4716: 'SDL_main': must return a value
-  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
+﻿  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)

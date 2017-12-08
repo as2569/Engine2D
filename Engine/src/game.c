@@ -99,23 +99,17 @@ int main(int argc, char * argv[])
 			if (this_event.type == SDL_MOUSEBUTTONUP)
 			{
 				for (int i = 0; i < MAX_BUILDINGS; i++) //check if clicked on buildings
-				{
-					b = point_to_building(mx, my, &buildingList[i]);
-					slog("b %p", b);
-					if (b != NULL)
+				{					
+					if ((b = point_to_building(mx, my, &buildingList[i])) != NULL)
 					{
-						slog("target before %p", mouse_target);
-						
-						mouse_target = b;
-						slog("target after %p", mouse_target);
-					}
-					else
-					{
-						slog("resetting");
-						mouse_target = NULL;
+						break;
 					}
 				}
-				slog("mouse_target outside %p", mouse_target);
+
+				if (b != NULL)
+				{
+					mouse_target = b;
+				}
 
 				for (int j = 0; j < MAX_UI_ELEMENTS; j++) //check if clicked on ui
 				{
@@ -124,7 +118,15 @@ int main(int argc, char * argv[])
 					{
 						if (ui->isClickable == 1 && ui->isActive == 1)
 						{
-							ui->click(ui, mouse_target);
+							if (ui->ui_type == 3)
+							{
+								slog("here");
+								ui->click(ui, mouse_target);
+							}
+							else
+							{
+								ui->click(ui);
+							}
 						}
 					}
 				}
