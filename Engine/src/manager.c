@@ -17,7 +17,7 @@ extern float dtime;
 extern int in_emergency;
 
 FILE *myFile;
-char* line[25];
+char* line[MAX_LEVEL_WIDTH];
 Building* b;
 Entity* e;
 Building* workBuilding;
@@ -25,6 +25,8 @@ int i = 0;
 int influence_timer = INFLUENCE_TICK;
 int event_timer = EVENT_TICK;
 int event_change = EVENT_CHANCE;
+
+int temp;
 
 void update_happiness(int *happiness)
 {
@@ -64,6 +66,31 @@ void update_influence(int* influence)
 	}
 }
 
+void read_level_file()
+{
+	myFile = fopen("resources/level.txt", "r");
+	if (myFile == NULL)
+	{
+		slog("Error Reading File");
+	}
+
+	for (int j = 0; j < MAX_LEVEL_HEIGHT; j++)
+	{
+		if(fgets(line, MAX_LEVEL_WIDTH * 2, myFile) != NULL)
+		{
+			printf("%s\n", line);
+			char *p = line;
+			for (int i = 0; i < MAX_LEVEL_WIDTH; i++)
+			{
+				int temp = strtol(p, &p, 10);
+				level_array[j][i] = temp;
+			}
+		}
+	}
+	fclose(myFile);
+}
+
+////load one layer only
 //void read_level_file()
 //{
 //	myFile = fopen("resources/level.txt", "r");
@@ -72,42 +99,24 @@ void update_influence(int* influence)
 //	{
 //		slog("Error Reading File");
 //	}
-//	for (int j = 0; j < MAX_LEVEL_HEIGHT; j++)
+//
+//	for (int i = 0; i <= MAX_LEVEL_WIDTH; i++)
 //	{
-//		if(fgets(line, MAX_LEVEL_WIDTH, myFile) != NULL)
-//		{
-//			for (int i = 0; i <= MAX_LEVEL_WIDTH; i++)
-//			{
-//				sscanf(line, "%d%n", &level_array[j][i]);
-//				//printf("%s -> %d\n", line, i);
-//			}
-//		}
+//		fscanf(myFile, "%d,", &level_array[0][i]);
 //	}
+//
 //	fclose(myFile);
 //}
-
-//load one layer only
-void read_level_file()
-{
-	myFile = fopen("resources/level.txt", "r");
-
-	if (myFile == NULL)
-	{
-		slog("Error Reading File");
-	}
-
-	for (int i = 0; i <= MAX_LEVEL_WIDTH; i++)
-	{
-		fscanf(myFile, "%d,", &level_array[0][i]);
-	}
-
-	fclose(myFile);
-}
 
 void generate_level()
 {	
 	for (int j = 0; j <= MAX_LEVEL_WIDTH; j++)
 	{
+		for (int k = 0; k <= MAX_LEVEL_WIDTH; k++)
+		{
+			printf("%i", level_array[j][k]);
+		}
+
 		int xPos = WINDOW_WIDTH;
 		int yPos = WINDOW_HEIGHT;
 
@@ -119,6 +128,7 @@ void generate_level()
 		xPos = 10 + (j * 100);
 		building_set_position(b, xPos, yPos);
 	}
+
 	for (int k = 0; k <= MAX_BUILDINGS; k++)
 	{
 		b = &buildingList[k];
