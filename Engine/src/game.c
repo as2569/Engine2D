@@ -116,11 +116,7 @@ int main(int argc, char * argv[])
 						if (ui->isClickable == 1 && ui->isActive == 1)
 						{
 							if (ui->ui_type == 0)
-							{
-								slog("passing %i ", in_main);
 								ui->click(ui, &in_main);
-								slog("current %i ", in_main);
-							}
 							else if (ui->ui_type == 4)
 								ui->click(ui, mouse_target);
 							else

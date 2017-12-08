@@ -31,10 +31,10 @@ ui_element* new_ui_element(int type)
 		ui->icon = gf2d_sprite_load_all("images/start.png", 300, 300, 1);
 		ui->icon_pos.x = WINDOW_WIDTH / 2 - 300;
 		ui->icon_pos.y = WINDOW_HEIGHT / 2 - 300;
-		ui->icon_scale.x = 0.125;
-		ui->icon_scale.y = 0.125;
-		ui->bounding_box.h = 512 * ui->icon_scale.x;
-		ui->bounding_box.w = 512 * ui->icon_scale.y;
+		ui->icon_scale.x = 1;
+		ui->icon_scale.y = 1;
+		ui->bounding_box.h = 300 * ui->icon_scale.x;
+		ui->bounding_box.w = 300 * ui->icon_scale.y;
 		ui->bounding_box.x = ui->icon_pos.x;
 		ui->bounding_box.y = ui->icon_pos.y;
 		ui->update = update_clickable_ui;
@@ -154,19 +154,13 @@ void clicked_on_menu(ui_element* ui)
 {
 	menuOpen = !menuOpen;
 	if (menuOpen == 0)
-	{
 		uiList[3]->isActive = 0;
-	}
 	else
-	{
 		uiList[3]->isActive = 1;
-	}
 }
 
 void clicked_on_start(ui_element* ui, int* var)
 {
-	slog("Before %i", *var);
-
 	*var = 0;
 
 	for (int i = 0; i < MAX_UI_ELEMENTS; i++)
@@ -176,7 +170,6 @@ void clicked_on_start(ui_element* ui, int* var)
 		else
 			uiList[i]->isActive = 1;
 	}
-	slog("after %i", *var);
 }
 
 void resolve_ui(ui_element* ui, Building* target)

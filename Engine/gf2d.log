@@ -14370,3 +14370,12 @@ c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:120: passing 1
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c:168: Before 1
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\user_interface.c:179: after 0
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:122: current 0 
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:53: ---==== BEGIN ====---
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c:133: graphics initialized
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_sprite.c:44: sprite system initialized
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:53: ---==== BEGIN ====---
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c:133: graphics initialized
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_sprite.c:44: sprite system initialized
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:53: ---==== BEGIN ====---
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c:133: graphics initialized
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_sprite.c:44: sprite system initialized
