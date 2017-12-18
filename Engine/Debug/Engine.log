@@ -1,2 +1,16 @@
-﻿  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
+﻿  manager.c
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(53): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(79): warning C4047: 'function': 'char *' differs in levels of indirection from 'char *[10]'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(79): warning C4024: 'fgets': different types for formal and actual parameter 1
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(71): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(81): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'char **'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(82): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'char **'
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(85): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(145): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(186): warning C4244: 'function': conversion from 'float' to 'int', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(178): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\adams\onedrive\onedrivedocs\engine\engine\src\manager.c(179): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.exe
   Engine.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\\Engine.pdb (Partial PDB)
