@@ -15,6 +15,8 @@ extern level_array[MAX_LEVEL_HEIGHT][MAX_LEVEL_WIDTH];
 extern int happiness_avg;
 extern float dtime;
 extern int in_emergency;
+extern int in_main;
+extern int lost;
 
 FILE *myFile;
 char* line[MAX_LEVEL_WIDTH];
@@ -25,7 +27,6 @@ int i = 0;
 int influence_timer = INFLUENCE_TICK;
 int event_timer = EVENT_TICK;
 int event_change = EVENT_CHANCE;
-
 int temp;
 
 void update_happiness(int *happiness)
@@ -46,6 +47,12 @@ void update_happiness(int *happiness)
 		satisfaction = temp / entity_count();
 	}
 	(*happiness) = satisfaction;
+
+	if (satisfaction == 1)
+	{
+		slog("Happiness average at 1, you lost");
+		lost = 1;
+	}
 }
 
 void update_influence(int* influence)
@@ -92,23 +99,24 @@ void read_level_file()
 
 void generate_level()
 {	
-	for (int j = 0; j <= MAX_LEVEL_WIDTH; j++)
+	for (int j = 0; j < MAX_LEVEL_HEIGHT; j++)
 	{
-		for (int k = 0; k <= MAX_LEVEL_WIDTH; k++)
+		for (int k = 0; k < MAX_LEVEL_WIDTH; k++)
 		{
 			printf("%i", level_array[j][k]);
+
+			int xPos = WINDOW_WIDTH;
+			int yPos = WINDOW_HEIGHT;
+
+			b = building_new();
+			building_set_type(b, level_array[j][k]);
+			b = building_setup(b, level_array[j][k]);
+
+			yPos = (yPos - (yPos / 2)) + (j * 100);
+			xPos = 10 + (k * 100);
+			building_set_position(b, xPos, yPos);
+
 		}
-
-		int xPos = WINDOW_WIDTH;
-		int yPos = WINDOW_HEIGHT;
-
-		b = building_new();
-		building_set_type(b, level_array[0][j]);
-		b = building_setup(b, level_array[0][j]);
-		
-		yPos = yPos - (yPos / 4);
-		xPos = 10 + (j * 100);
-		building_set_position(b, xPos, yPos);
 	}
 
 	for (int k = 0; k <= MAX_BUILDINGS; k++)

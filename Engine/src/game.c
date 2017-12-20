@@ -22,6 +22,8 @@ int influence = 100;
 int happiness_avg = 0;
 float dtime = 0;
 int in_emergency = 0;
+int in_main = 1;
+int lost = 0;
 
 Mix_Music* music; 
 
@@ -35,11 +37,12 @@ int main(int argc, char * argv[])
 
     /*variable declarations*/
     int quit = 0;
-	int in_main = 1;
     const Uint8 * keys;
 	SDL_Event this_event;
     Sprite* sprite;
 	Sprite* titleScreen;
+	Sprite* lostScreen;
+	Sprite* winScreen;
 
 	//mouse variables
     int mx,my;
@@ -67,6 +70,8 @@ int main(int argc, char * argv[])
     sprite = gf2d_sprite_load_image("images/backgrounds/bg_flat.png");
 	titleScreen = gf2d_sprite_load_image("images/falowiec.png");
     mouse = gf2d_sprite_load_all("images/pointer.png",32,32,16);
+	lostScreen = gf2d_sprite_load_image("images/LostScreen.png");
+	//winscreen load here
 
 	clearEntList();
 	clearBuildingList();
@@ -134,20 +139,30 @@ int main(int argc, char * argv[])
 			building_emergency();
 			spawn_new_residents();
 		}
+		else
+		{
+			uiList[0]->isActive = 1;
+		}
+
 
 		gf2d_graphics_clear_screen(); // clears drawing buffers
 		// all drawing should happen betweem clear_screen and next_frame
-	
+		
 		if (in_main)
 		{
 			gf2d_sprite_draw_image(titleScreen, vector2d(0, 0)); //backgrounds drawn first
+		}
+		else if (lost == 1)
+		{
+			gf2d_sprite_draw_image(lostScreen, vector2d(0, 0));			
 		}
 		else
 		{
 			gf2d_sprite_draw_image(sprite, vector2d(0, 0)); //backgrounds drawn first
 			update_buildings();
-			update_entities();			
-		}
+			update_entities();
+			
+		}	
 
 		update_ui(); //UI elements last
 

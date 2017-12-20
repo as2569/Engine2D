@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <time.h>  
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
@@ -8,11 +9,16 @@
 
 extern Building buildingList[MAX_BUILDINGS];
 extern int influence;
+extern int happiness_avg;
 extern float dtime;
 extern int in_emergency;
+int random;
+Sprite* store1;
+Sprite* store2;
 
 void clearBuildingList()
 {
+	srand(time(NULL));
 	memset(buildingList, 0, MAX_BUILDINGS * sizeof(Building));
 }
 
@@ -33,16 +39,53 @@ Building* building_new()
 
 Building* building_setup(Building* b, int type)
 {
+	int random = rand() % 3;
+
 	if (b)
 	{
 		//variables
 		b->position.x = 0;
 		b->position.y = 0;
-		b->scale.x = 25;
-		b->scale.y = 25;
-		b->sprite = gf2d_sprite_load_all("images/square.png", 4, 4, 1);
-		b->size.x = 4 * b->scale.x;
-		b->size.y = 4 * b->scale.y;
+		if (type == 6)
+		{
+			if (random == 0)
+			{
+				b->sprite = gf2d_sprite_load_all("images/circleShape.png", 100, 100, 1);
+				b->scale.x = 1;
+				b->scale.y = 1;
+				b->size.x = 100 * b->scale.x;
+				b->size.y = 100 * b->scale.y;
+			}
+			else if (random == 1)
+			{
+				b->sprite = gf2d_sprite_load_all("images/diagonalPattern.png", 100, 100, 1);
+				b->scale.x = 1;
+				b->scale.y = 1;
+				b->size.x = 100 * b->scale.x;
+				b->size.y = 100 * b->scale.y;
+			}
+			else if (random == 2)
+			{
+				b->sprite = gf2d_sprite_load_all("images/crossPattern.png", 100, 100, 1);
+				b->scale.x = 1;
+				b->scale.y = 1;
+				b->size.x = 100 * b->scale.x;
+				b->size.y = 100 * b->scale.y;
+			}
+			else
+			{
+				slog("Store loading error");
+			}
+		}
+		else
+		{
+			b->sprite = gf2d_sprite_load_all("images/square.png", 4, 4, 1);
+			b->scale.x = 25;
+			b->scale.y = 25;
+			b->size.x = 4 * b->scale.x;
+			b->size.y = 4 * b->scale.y;
+		}
+
 		b->bounding_box.h = b->size.x;
 		b->bounding_box.w = b->size.y;
 		b->bounding_box.x = b->position.x;
@@ -54,36 +97,6 @@ Building* building_setup(Building* b, int type)
 		//function pointers
 		b->update_b = building_update;
 		b->free_b = building_free;
-
-		//color
-		//if (type == 1) //Under construction
-		//{
-		//	b->buildingType = CONSTRUCTION;
-		//}
-		//else if (type == 2) //Apartment
-		//{
-		//	b->buildingType = APARTMENT;
-		//}
-		//else if (type == 3) //Elevator
-		//{
-		//	b->buildingType = ELEVATOR;
-		//}
-		//else if (type == 4)//Emergency
-		//{
-		//	b->buildingType == EMERGENCY;
-		//}
-		//else if (type == 5)//Emergency
-		//{
-		//	b->buildingType == RESOLVING;
-		//}
-		//else if (type == 6)//Work
-		//{
-		//	b->buildingType == WORK;
-		//}
-		//else
-		//{
-		//	b->buildingType = EMPTY;
-		//}
 	}
 
 	//slog("ent setup");
@@ -110,7 +123,7 @@ void building_free(Building** b)
 
 void building_update(Building* b)
 {
-	//if entity is out of screen bounds, free it
+	//if building is out of screen bounds, free it
 	if (b->position.x > 1200 || b->position.x < 0 || b->position.y > 720 || b->position.y < 0)
 	{
 		building_free(&b);
@@ -131,6 +144,7 @@ void building_update(Building* b)
 			b->buildingType = CONSTRUCTION;
 			b->time_to_destroy = DESTROY_TIME;
 			b->time_to_resolve = RESOLVE_TIME;
+			in_emergency = 0;
 		}
 	}
 

@@ -154,15 +154,14 @@ void clicked_on_menu(ui_element* ui)
 {
 	menuOpen = !menuOpen;
 	if (menuOpen == 0)
-		uiList[3]->isActive = 0;
+		uiList[4]->isActive = 0;
 	else
-		uiList[3]->isActive = 1;
+		uiList[4]->isActive = 1;
 }
 
 void clicked_on_start(ui_element* ui, int* var)
 {
 	*var = 0;
-
 	for (int i = 0; i < MAX_UI_ELEMENTS; i++)
 	{
 		if (i == 0)
