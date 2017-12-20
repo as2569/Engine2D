@@ -98,6 +98,14 @@ int main(int argc, char * argv[])
 
 			SDL_GetMouseState(&mx, &my);
 
+			if (this_event.type == SDL_KEYDOWN)
+			{
+				if (this_event.key.keysym.sym == SDLK_1)
+				{
+					lost = 1;
+				}
+			}
+
 			if (this_event.type == SDL_MOUSEBUTTONUP)
 			{
 				for (int i = 0; i < MAX_BUILDINGS; i++) //check if clicked on buildings
