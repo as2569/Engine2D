@@ -46,6 +46,7 @@ Building* building_setup(Building* b, int type)
 		//variables
 		b->position.x = 0;
 		b->position.y = 0;
+
 		if (type == 6)
 		{
 			if (random == 0)
@@ -199,8 +200,10 @@ void building_update(Building* b)
 	gf2d_sprite_draw(b->sprite, b->position, &b->scale, NULL, NULL, NULL, &b->color, 0);
 
 	//bounding box DEBUG
+	#ifdef DEBUG 
 	Vector4D col = { 255, 0, 255, 255 };
 	gf2d_draw_rect(b->bounding_box, col);
+	#endif
 
 }
 

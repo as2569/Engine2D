@@ -126,5 +126,8 @@
     <ClInclude Include="include\user_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="phys\physfs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

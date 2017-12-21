@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\physBuild\CMakeFiles\dd0aba69e1811375eb612d6822f030b2\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B5A0D1E5-B741-3689-A59E-5832E20DFEFA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

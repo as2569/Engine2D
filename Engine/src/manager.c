@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <stdio.h>
+#include <physfs.h>
 #include "simple_logger.h"
 #include "gf2d_vector.h"
 #include "gf2d_graphics.h"
@@ -75,17 +76,19 @@ void update_influence(int* influence)
 
 void read_level_file()
 {
-	myFile = fopen("resources/level.txt", "r");
-	if (myFile == NULL)
+	PHYSFS_File* myfs_File = PHYSFS_openRead("level/level.txt");
+
+	if (myfs_File == NULL)
 	{
 		slog("Error Reading File");
 	}
 
 	for (int j = 0; j < MAX_LEVEL_HEIGHT; j++)
 	{
-		if(fgets(line, MAX_LEVEL_WIDTH * MAX_LEVEL_HEIGHT * 2, myFile) != NULL)
+		if(PHYSFS_read(myfs_File, line, 20, 1) != NULL)
 		{
-			printf("%s\n", line);
+			line[19] = '\0';
+			//printf("%s\n", line);
 			char *p = line;
 			for (int i = 0; i < MAX_LEVEL_WIDTH; i++)
 			{
@@ -94,7 +97,7 @@ void read_level_file()
 			}
 		}
 	}
-	fclose(myFile);
+	PHYSFS_close(myfs_File);
 }
 
 void generate_level()

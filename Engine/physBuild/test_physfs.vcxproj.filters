@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\test\test_physfs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{880177FE-8429-32B3-9261-1CD1A1B06D07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

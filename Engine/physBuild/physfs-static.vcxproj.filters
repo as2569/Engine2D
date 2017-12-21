@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_byteorder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_unicode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_platform_posix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_platform_unix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_platform_windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_platform_os2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_platform_qnx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_dir.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_unpacked.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_grp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_hog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_7z.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_mvl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_qpak.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_wad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_zip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_slb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_iso9660.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\src\physfs_archiver_vdf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\adams\Downloads\physfs-3.0.1.tar\physfs-3.0.1\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{880177FE-8429-32B3-9261-1CD1A1B06D07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

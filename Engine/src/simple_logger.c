@@ -30,6 +30,10 @@ void init_logger(const char *log_file_path)
 
 void _slog(char *f,int l,char *msg,...)
 {
+	#ifdef RELEASE
+	return
+	#endif
+
     va_list ap;
     dirty = 1;
     /*echo all logging to stdout*/

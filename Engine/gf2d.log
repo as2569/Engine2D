@@ -17990,3 +17990,76 @@ c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:105: here
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\game.c:56: ---==== BEGIN ====---
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_graphics.c:133: graphics initialized
 c:\users\adams\onedrive\onedrivedocs\engine\engine\src\gf2d_sprite.c:44: sprite system initialized
+src\game.c:61: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\collisions.c:44: Returning 0004B670
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\manager.c:146: building emergency
+src\game.c:61: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\collisions.c:44: Returning 0005B120
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\manager.c:146: building emergency
+src\game.c:197: ---==== END ====---
+src\gf2d_sprite.c:27: sprite system closed
+src\gf2d_graphics.c:164: graphics closed
+src\game.c:61: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\manager.c:146: building emergency
+src\game.c:61: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\game.c:61: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\entity.c:215: ATHOME switching GOINGWORK
+src\game.c:61: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\game.c:69: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\game.c:204: ---==== END ====---
+src\gf2d_sprite.c:27: sprite system closed
+src\gf2d_graphics.c:164: graphics closed
+src\game.c:69: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\entity.c:218: ATHOME switching GOINGWORK
+src\entity.c:218: ATHOME switching GOINGWORK
+src\entity.c:218: ATHOME switching GOINGWORK
+src\entity.c:218: ATHOME switching GOINGWORK
+src\entity.c:218: ATHOME switching GOINGWORK
+src\manager.c:149: building emergency
+src\game.c:204: ---==== END ====---
+src\gf2d_sprite.c:27: sprite system closed
+src\gf2d_graphics.c:164: graphics closed
+src\game.c:69: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized
+src\game.c:204: ---==== END ====---
+src\gf2d_sprite.c:27: sprite system closed
+src\gf2d_graphics.c:164: graphics closed
+src\game.c:69: ---==== BEGIN ====---
+src\gf2d_graphics.c:133: graphics initialized
+src\gf2d_sprite.c:44: sprite system initialized

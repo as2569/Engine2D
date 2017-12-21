@@ -2,6 +2,8 @@
 #include <SDL_mixer.h>
 #include <stdio.h>
 #include <time.h>
+#include <windows.h>
+#include <physfs.h>
 #include "gf2d_graphics.h"
 #include "gf2d_sprite.h"
 #include "simple_logger.h"
@@ -27,7 +29,11 @@ int lost = 0;
 
 Mix_Music* music; 
 
+#ifndef DEBUG
 int main(int argc, char * argv[])
+#elif RELEASE
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#endif
 {	
 	//my variables
 	Entity* e;
@@ -52,6 +58,13 @@ int main(int argc, char * argv[])
     Vector4D mouseColor = {255,100,255,200};
 
     /*program initialization*/
+	PHYSFS_init(NULL);
+	PHYSFS_mount("level.dat", "level", 0);
+	if (!PHYSFS_exists("level/level.txt"))
+	{
+		return;
+	}
+	
     init_logger("gf2d.log");
     slog("---==== BEGIN ====---");
     gf2d_graphics_initialize(
@@ -98,6 +111,7 @@ int main(int argc, char * argv[])
 
 			SDL_GetMouseState(&mx, &my);
 
+			//Debug event to auto lose game
 			if (this_event.type == SDL_KEYDOWN)
 			{
 				if (this_event.key.keysym.sym == SDLK_1)
@@ -168,8 +182,7 @@ int main(int argc, char * argv[])
 		{
 			gf2d_sprite_draw_image(sprite, vector2d(0, 0)); //backgrounds drawn first
 			update_buildings();
-			update_entities();
-			
+			update_entities();		
 		}	
 
 		update_ui(); //UI elements last

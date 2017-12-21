@@ -1,0 +1,6 @@
+C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/physfs-static.dir
+C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/physfs.dir
+C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/test_physfs.dir
+C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/INSTALL.dir
+C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/ZERO_CHECK.dir

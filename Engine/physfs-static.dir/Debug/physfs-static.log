@@ -1,0 +1,24 @@
+﻿  Building Custom Rule C:/Users/adams/Downloads/physfs-3.0.1.tar/physfs-3.0.1/CMakeLists.txt
+  CMake does not need to re-run because C:/Users/adams/OneDrive/OneDriveDocs/Engine/Engine/physBuild/CMakeFiles/generate.stamp is up-to-date.
+  physfs.c
+  physfs_byteorder.c
+  physfs_unicode.c
+  physfs_platform_posix.c
+  physfs_platform_unix.c
+  physfs_platform_windows.c
+  physfs_platform_os2.c
+  physfs_platform_qnx.c
+  physfs_archiver_dir.c
+  physfs_archiver_unpacked.c
+  physfs_archiver_grp.c
+  physfs_archiver_hog.c
+  physfs_archiver_7z.c
+  physfs_archiver_mvl.c
+  physfs_archiver_qpak.c
+  physfs_archiver_wad.c
+  physfs_archiver_zip.c
+  physfs_archiver_slb.c
+  physfs_archiver_iso9660.c
+  physfs_archiver_vdf.c
+  Generating Code...
+  physfs-static.vcxproj -> C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\physBuild\Debug\physfs-static.lib

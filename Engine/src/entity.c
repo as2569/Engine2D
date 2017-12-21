@@ -105,8 +105,11 @@ void entity_update(Entity* e)
 	gf2d_sprite_draw(e->sprite, e->position, &e->scale, NULL, NULL, NULL, NULL, 5);
 
 	//bounding box DEBUG
+	#ifdef DEBUG 
 	Vector4D col = { 255, 0, 255, 255 };
-	gf2d_draw_rect(e->bounding_box, col);
+	gf2d_draw_rect(b->bounding_box, col);
+	#endif
+
 	//slog("home %p work %p", e->home, e->work);
 }
 

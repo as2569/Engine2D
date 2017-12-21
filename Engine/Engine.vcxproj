@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\include;C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\include;C:\Libraries\SDL2_mixer-2.0.1\include;C:\Libraries\SDL2_image-2.0.1\include;C:\Libraries\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\SDL2-2.0.5\lib\x86;C:\Libraries\SDL2_mixer-2.0.1\lib\x86;C:\Libraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\physBuild\Debug;C:\Libraries\SDL2-2.0.5\lib\x86;C:\Libraries\SDL2_mixer-2.0.1\lib\x86;C:\Libraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -82,7 +82,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\include;C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\Engine\include;C:\Libraries\SDL2_mixer-2.0.1\include;C:\Libraries\SDL2_image-2.0.1\include;C:\Libraries\SDL2-2.0.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\SDL2-2.0.5\lib\x86;C:\Libraries\SDL2_mixer-2.0.1\lib\x86;C:\Libraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\adams\OneDrive\OneDriveDocs\Engine\Engine\physBuild\Debug;C:\Libraries\SDL2-2.0.5\lib\x86;C:\Libraries\SDL2_mixer-2.0.1\lib\x86;C:\Libraries\SDL2_image-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -98,7 +98,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;physfs-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -127,7 +127,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;physfs-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -188,6 +188,7 @@
     <ClInclude Include="include\sound.h" />
     <ClInclude Include="include\time.h" />
     <ClInclude Include="include\user_interface.h" />
+    <ClInclude Include="phys\physfs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
